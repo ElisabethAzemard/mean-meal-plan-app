@@ -5,7 +5,7 @@ const authRouter = express.Router();
 
 // node modules
 const { checkFields } = require('../../services/request.checker');
-const MandatoryFields = require('../../services/mandatory.service').default;
+const MandatoryFields = require('../../services/mandatory.service');
 const { register, login, logout, getUserInfo } = require('./auth.controller');
 
 
@@ -19,6 +19,7 @@ class RouterClass {
 
         // POST 'api/auth/register': send data to register new user
         authRouter.post('/register', (req, res) => {
+            console.log(req.body);
             // Error: no body present
             if (typeof req.body === 'undefined' || req.body === null) {
                 return res.status(400).json({
@@ -33,7 +34,7 @@ class RouterClass {
 
             if (!ok) {
                 return res.status(400).json({
-                    message: 'Bad fields provided',
+                    message: 'Wrong fields',
                     data: null,
                     err: { miss, extra }
                 })

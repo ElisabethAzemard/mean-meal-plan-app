@@ -2,14 +2,14 @@
 const checkFields = (required, object) => {
 
     /* Declarations */
-    const missing = [];
+    const miss = [];
     const extra = [];
 
     /* CHECK FIELDS */
 
-    // Check missing fields
+    // Check miss fields
     required.forEach((prop) => {
-        if (!(prop in object)) missing.push(prop);
+        if (!(prop in object)) miss.push(prop);
     });
 
     // check extra fields
@@ -18,10 +18,10 @@ const checkFields = (required, object) => {
     }
 
     // set service state
-    const ok = (extra.length === 0 && missing.length === 0);
+    const ok = (extra.length === 0 && miss.length === 0);
 
     // return service state
-    return { ok, extra, missing };
+    return { ok, extra, miss };
 
 };
 

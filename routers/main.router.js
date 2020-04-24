@@ -7,8 +7,7 @@ const passport = require('passport');
 // routers
 const FrontRouterClass = require('./front/front.router');
 const AuthRouterClass = require('./auth/auth.router')
-const ItemRouterClass = require('./item/item.router');
-const RecipeRouterClass = require('./recipe/recipe.router');
+const ApiRouterClass = require('./api/api.router');
 
 // authentication
 const { setAuthentication } = require('../services/auth.service');
@@ -18,23 +17,21 @@ setAuthentication(passport);
 
 // parent
 const mainRouter = Router();
-const apiRouter = Router();
+const apiParentRouter = Router();
 
 // set api router
-mainRouter.use('/api', apiRouter);
+mainRouter.use('/api', apiParentRouter);
 
 // child
 const frontRouter = new FrontRouterClass();
 const authRouter = new AuthRouterClass({ passport });
-const itemRouter = new ItemRouterClass({ passport });
-const recipeRouter = new RecipeRouterClass({ passport });
+const apiRouter = new ApiRouterClass({ passport });
 
 /* CONFIGURE ROUTES */
 
 // set api child routers
-apiRouter.use('/auth', authRouter.init());
-apiRouter.use('/item', itemRouter.init());
-apiRouter.use('/recipe', recipeRouter.init());
+apiParentRouter.use('/auth', authRouter.init());
+apiParentRouter.use('/', apiRouter.init());
 
 // set front router
 mainRouter.use('/', frontRouter.init());

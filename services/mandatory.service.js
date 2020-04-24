@@ -1,10 +1,10 @@
 /* SERVICE DEFINITION */
 const MandatoryFields = {
     item: ['name'],
-    recipe: ['name', 'ingredients'],
+    recipe: ['name'],
     identity: ['email', 'password'],
-    register: ['email', 'password', 'repeatepassword', 'firstname', 'lastname', 'birthdate']
+    register: ['email', 'password', 'firstname', 'lastname', 'birthdate']
 };
 
 /* SERVICE FUNCTIONS EXPORT */
-module.exports = { MandatoryFields };
+module.exports = MandatoryFields;

@@ -9,7 +9,7 @@ Import
 Definition
 */
     const MySchema = new Schema({
-        identity: String,
+        identity: [Schema.Types.ObjectId],
         firstname: String,
         lastname: String,
         birthdate: String,

@@ -12,7 +12,8 @@ const MongooseSchema = new Schema({
     tags: [String],
     new: Boolean, // already tested?
     starchy: Boolean, // suitable for dinner?
-    planned: Boolean // has the recipe been picked for the week's meal plan?
+    planned: Boolean, // has the recipe been picked for the week's meal plan?
+    author: [Schema.Types.ObjectId],
 });
 
 // EXPORT

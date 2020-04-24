@@ -5,20 +5,22 @@ const router = express.Router();
 
 // services
 const { checkFields } = require('../../services/request.checker');
-const MandatoryFields = require('../../services/mandatory.service').default;
-const { createItem, readItem, readOneItem, updateItem, deleteItem } = require('./item.controller');
+const MandatoryFields = require('../../services/mandatory.service');
+const { createItem, readItem, readOneItem, updateItem, deleteItem } = require('./api.controller');
 
+
+// Replace 'MandatoryFields.item' (model, not method), with appropriate model name when using this file as template.
 
 /* ROUTES DEFINITION */
-class ItemRouterClass {
+class ApiRouterClass {
 
     // inject Passport to secure routes
-    constructor({ passport }) { this.passport = passport }
+    constructor( { passport } ) { this.passport = passport }
 
     // set route function
     routes() {
         // CRUD: create
-        router.post('/', this.passport.authenticate('jwt', { session: false }), (req, res) => {
+        router.post('/:endpoint', this.passport.authenticate('jwt', { session: false }), (req, res) => {
             // ERROR: no body provided
             if (typeof req.body === 'undefined' || req.body === null) {
                 return res.status(400).json({
@@ -29,7 +31,7 @@ class ItemRouterClass {
             }
 
             // check fields in the body
-            const { miss, extra, ok } = checkFields(MandatoryFields.item, req.body);
+            const { miss, extra, ok } = checkFields(MandatoryFields[req.params.endpoint], req.body);
 
             if (!ok) {
                 return res.status(400).json({
@@ -57,8 +59,8 @@ class ItemRouterClass {
         })
 
         // CRUD: read
-        router.get('/', (req, res) => {
-            readItem(req)
+        router.get('/:endpoint', (req, res) => {
+            readItem()
                 .then(apiResponse => {
                     return res.status(200).json({
                         message: 'Data sent',
@@ -76,7 +78,7 @@ class ItemRouterClass {
         })
 
         // CRUD: read one
-        router.get('/:id', (req, res) => {
+        router.get('/:endpoint/:id', (req, res) => {
             readOneItem(req)
                 .then(apiResponse => {
                     return res.status(200).json({
@@ -95,7 +97,7 @@ class ItemRouterClass {
         })
 
         // CRUD: update
-        router.put('/:id', this.passport.authenticate('jwt', { session: false }), (req, res) => {
+        router.put('/:endpoint/:id', this.passport.authenticate('jwt', { session: false }), (req, res) => {
             // ERROR: no body provided
             if (typeof req.body === 'undefined' || req.body === null) {
                 return res.status(400).json({
@@ -106,7 +108,7 @@ class ItemRouterClass {
             }
 
             // check fields in the body
-            const { miss, extra, ok } = checkFields(MandatoryFields.item, req.body);
+            const { miss, extra, ok } = checkFields(MandatoryFields[req.params.endpoint], req.body);
 
             if (!ok) {
                 return res.status(400).json({
@@ -134,7 +136,7 @@ class ItemRouterClass {
         })
 
         // CRUD: delete
-        router.delete('/:id', this.passport.authenticate('jwt', { session: false }), (req, res) => {
+        router.delete('/:endpoint/:id', this.passport.authenticate('jwt', { session: false }), (req, res) => {
             deleteItem(req)
                 .then(apiResponse => {
                     return res.status(200).json({
@@ -165,4 +167,4 @@ class ItemRouterClass {
 
 
 /* EXPORT */
-module.exports = ItemRouterClass;
+module.exports = ApiRouterClass;

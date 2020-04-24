@@ -1,19 +1,21 @@
 /* IMPORTS */
 const Models = require('../../models/index.model');
 
+// Replace 'Models[req.params.endpoint]' with appropriate Models.modelName when using this file as template.
 
 /* CRUD DEFINITION */
 const createItem = (req) => {
+    req.body.author = req.user._id;
     return new Promise((resolve, reject) => {
-        Models.item.create(req.body)
-            .then(endpoint => resolve({ endpoint, identity: req.user }))
+        Models[req.params.endpoint].create(req.body)
+            .then(itemData => resolve({ itemData, identity: req.user }))
             .catch(err => reject(err));
     })
 }
 
 const readItem = (req) => {
     return new Promise((resolve, reject) => {
-        Models.item.find((err, collection) => {
+        Models.recipe.find((err, collection) => {
             err ? reject(err) : resolve(collection);
         })
     })
@@ -21,7 +23,7 @@ const readItem = (req) => {
 
 const readOneItem = (req) => {
     return new Promise((resolve, reject) => {
-        Models.item.findById(req.params.id, (err, document) => {
+        Models[req.params.endpoint].findById(req.params.id, (err, document) => {
             err ? reject(err) : resolve(document);
         })
     })
@@ -29,11 +31,11 @@ const readOneItem = (req) => {
 
 const updateItem = (req) => {
     return new Promise((resolve, reject) => {
-        Models.item.findByIdAndUpdate(req.params.id, req.body, (err, document) => {
+        Models[req.params.endpoint].findByIdAndUpdate(req.params.id, req.body, (err, document) => {
             if (err) {
                 return reject(err)
             } else {
-                Models.item.findById(req.params.id, (err, updated) => {
+                Models[req.params.endpoint].findById(req.params.id, (err, updated) => {
                     err ? reject(err) : resolve(updated);
                 })
             }
@@ -43,7 +45,7 @@ const updateItem = (req) => {
 
 const deleteItem = (req) => {
     return new Promise((resolve, reject) => {
-        Models.item.deleteOne({ _id: req.params.id }, (err, document) => {
+        Models[req.params.endpoint].deleteOne({ _id: req.params.id }, (err, document) => {
             err ? reject(err) : resolve(document);
         })
     })
