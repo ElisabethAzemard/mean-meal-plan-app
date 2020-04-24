@@ -1,7 +1,7 @@
 /* SERVICE DEFINITION */
 const MandatoryFields = {
-    item: ['name'],
-    recipe: ['name'],
+    item: ['name', 'barcode', 'category', 'storage'],
+    recipe: ['name', 'ingredients', 'steps', 'timing'],
     identity: ['email', 'password'],
     register: ['email', 'password', 'firstname', 'lastname', 'birthdate']
 };

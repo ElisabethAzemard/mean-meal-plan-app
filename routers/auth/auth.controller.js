@@ -68,7 +68,7 @@ const logout = (res) => {
     return new Promise((resolve, reject) => {
         // Delete cookie
         res.clearCookie('remy');
-        return resolve('User logedout');
+        return resolve('User logged out.');
     });
 }
 

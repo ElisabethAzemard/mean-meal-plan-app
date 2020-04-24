@@ -60,7 +60,7 @@ class ApiRouterClass {
 
         // CRUD: read
         router.get('/:endpoint', (req, res) => {
-            readItem()
+            readItem(req)
                 .then(apiResponse => {
                     return res.status(200).json({
                         message: 'Data sent',

@@ -8,14 +8,14 @@ const createItem = (req) => {
     req.body.author = req.user._id;
     return new Promise((resolve, reject) => {
         Models[req.params.endpoint].create(req.body)
-            .then(itemData => resolve({ itemData, identity: req.user }))
+            .then(itemData => resolve({ itemData }))
             .catch(err => reject(err));
     })
 }
 
 const readItem = (req) => {
     return new Promise((resolve, reject) => {
-        Models.recipe.find((err, collection) => {
+        Models[req.params.endpoint].find((err, collection) => {
             err ? reject(err) : resolve(collection);
         })
     })

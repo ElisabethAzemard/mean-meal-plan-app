@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 // DEFINE MODEL
 const MongooseSchema = new Schema({
     name: String,
-    ingredients: [Schema.Types.ObjectId],
+    ingredients: [String],
     steps: [String],
     notes: [Schema.Types.ObjectId],
     timing: Number, // preparation timing in minutes
@@ -17,4 +17,4 @@ const MongooseSchema = new Schema({
 });
 
 // EXPORT
-module.exports = mongoose.model('recipe', MongooseSchema);
+module.exports = mongoose.model('recipe', MongooseSchema, 'recipes');
