@@ -1,0 +1,15 @@
+<header>
+    <h1>{{headerTitle}}</h1>
+    <nav>
+        <ul> <!-- *ngIf="path === '/todo'" -->
+            <li><a [routerLink]="'/'">Home</a></li>
+            <li><a [routerLink]="'/shopping-list'">Liste de courses</a></li>
+            <li><a [routerLink]="'/barcode-scanner'">Scanner</a></li>
+            <li><a [routerLink]="'/inventory'">Inventaire</a></li>
+            <li><a [routerLink]="'/recipes'">Recettes</a></li>
+            <li><a [routerLink]="'/meal-plan'">Planning</a></li>
+            <li (click)="logoutUser()">Log Out</li>
+        </ul>
+    </nav>
+</header>
+<p>header works !</p>

@@ -1,10 +1,15 @@
+/* Import */
 import { Component } from '@angular/core';
 
+
+/* DEFINITION */
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.component.html'
 })
+
+
+/* EXPORT */
 export class AppComponent {
-  title = 'angularClient';
+  title = 'Remy';
 }

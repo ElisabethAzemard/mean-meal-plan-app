@@ -1,18 +1,26 @@
+/* Import */
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core'; // permet les calls http dans l'app
+import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRouter } from "./app-router.module"; // AppRouter est un module
 import { AppComponent } from './app.component';
+import { UserInterfaceModule } from './shared/user-interface/user-interface.module';
 
+
+/* DEFINITION */
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [ AppComponent ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRouter,
+    UserInterfaceModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ ],
+  bootstrap: [ AppComponent ]
 })
+
+
+/* EXPORT */
 export class AppModule { }
