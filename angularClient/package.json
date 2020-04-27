@@ -20,6 +20,8 @@
     "@angular/platform-browser-dynamic": "~8.2.13",
     "@angular/router": "~8.2.13",
     "bulma": "^0.8.2",
+    "ngx-barcode-scanner": "0.0.7",
+    "quagga": "^0.12.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

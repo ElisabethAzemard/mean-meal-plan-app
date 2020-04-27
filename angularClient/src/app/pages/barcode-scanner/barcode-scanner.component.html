@@ -1,1 +1,10 @@
-<p>barcode-scanner works!</p>
+<p>barcode-scanner works !</p>
+
+<div><!--[hidden]="!barcodeValue"-->
+    Code barre : {{barcodeValue}}
+</div>
+<barcode-scanner-livestream
+        type="ean"
+        (valueChanges)="onValueChanges($event)"
+        (started)="onStarted"></barcode-scanner-livestream>
+
