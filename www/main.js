@@ -440,8 +440,11 @@ __webpack_require__.r(__webpack_exports__);
 
  // permet les calls http dans l'app
 
+// App router
  // AppRouter est un module
+//
 
+// Modules
 
 /* DEFINITION */
 let AppModule = 
@@ -455,7 +458,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
             _app_router_module__WEBPACK_IMPORTED_MODULE_4__["AppRouter"],
-            _shared_user_interface_user_interface_module__WEBPACK_IMPORTED_MODULE_6__["UserInterfaceModule"]
+            _shared_user_interface_user_interface_module__WEBPACK_IMPORTED_MODULE_6__["UserInterfaceModule"],
         ],
         providers: [],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]

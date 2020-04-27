@@ -1,0 +1,13 @@
+<form [formGroup]="formData">
+    <input
+        formControlName="email"
+        type="email"
+        name="email"
+        required
+        minlength="5"
+        placeholder="Your email">
+
+    <button
+        [disabled]="!formData.valid"
+        type="submit">OK</button>
+</form>

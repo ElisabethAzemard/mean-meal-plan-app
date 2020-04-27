@@ -8105,6 +8105,19 @@ ReactiveFormsModule.decorators = [
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/shared/form-module/login-form/login-form.component.html":
+/*!***************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/shared/form-module/login-form/login-form.component.html ***!
+  \***************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<form [formGroup]=\"formData\">\n    <input\n        formControlName=\"email\"\n        type=\"email\"\n        name=\"email\"\n        required\n        minlength=\"5\"\n        placeholder=\"Your email\">\n\n    <button\n        [disabled]=\"!formData.valid\"\n        type=\"submit\">OK</button>\n</form>\n");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/shared/form-module/registration-form/registration-form.component.html":
 /*!*****************************************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/shared/form-module/registration-form/registration-form.component.html ***!
@@ -8133,11 +8146,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _registration_form_registration_form_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./registration-form/registration-form.component */ "./src/app/shared/form-module/registration-form/registration-form.component.ts");
+/* harmony import */ var _login_form_login_form_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./login-form/login-form.component */ "./src/app/shared/form-module/login-form/login-form.component.ts");
 
 /* IMPORTS */
 
 
  // To use [(ngModel)]
+
 
 /* DEFINITION */
 let AppFormModule = 
@@ -8146,14 +8161,78 @@ class AppFormModule {
 };
 AppFormModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        declarations: [_registration_form_registration_form_component__WEBPACK_IMPORTED_MODULE_4__["RegistrationFormComponent"]],
+        declarations: [_registration_form_registration_form_component__WEBPACK_IMPORTED_MODULE_4__["RegistrationFormComponent"], _login_form_login_form_component__WEBPACK_IMPORTED_MODULE_5__["LoginFormComponent"]],
         imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]],
-        exports: [_registration_form_registration_form_component__WEBPACK_IMPORTED_MODULE_4__["RegistrationFormComponent"]]
+        exports: [_registration_form_registration_form_component__WEBPACK_IMPORTED_MODULE_4__["RegistrationFormComponent"], _login_form_login_form_component__WEBPACK_IMPORTED_MODULE_5__["LoginFormComponent"]]
     })
     /* EXPORT */
 ], AppFormModule);
 
 ;
+
+
+/***/ }),
+
+/***/ "./src/app/shared/form-module/login-form/login-form.component.scss":
+/*!*************************************************************************!*\
+  !*** ./src/app/shared/form-module/login-form/login-form.component.scss ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NoYXJlZC9mb3JtLW1vZHVsZS9sb2dpbi1mb3JtL2xvZ2luLWZvcm0uY29tcG9uZW50LnNjc3MifQ== */");
+
+/***/ }),
+
+/***/ "./src/app/shared/form-module/login-form/login-form.component.ts":
+/*!***********************************************************************!*\
+  !*** ./src/app/shared/form-module/login-form/login-form.component.ts ***!
+  \***********************************************************************/
+/*! exports provided: LoginFormComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginFormComponent", function() { return LoginFormComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+
+
+
+let LoginFormComponent = class LoginFormComponent {
+    // Inject FormBuilder
+    constructor(FormBuilder) {
+        this.FormBuilder = FormBuilder;
+        this.formSubmit = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        // Method to reset form
+        this.resetForm = () => {
+            this.formData = this.FormBuilder.group({
+                email: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+            });
+        };
+    }
+    // Start
+    ngOnInit() {
+        this.resetForm();
+    }
+};
+LoginFormComponent.ctorParameters = () => [
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] }
+];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+], LoginFormComponent.prototype, "formSubmit", void 0);
+LoginFormComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-login-form',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./login-form.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/shared/form-module/login-form/login-form.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./login-form.component.scss */ "./src/app/shared/form-module/login-form/login-form.component.scss")).default]
+    })
+], LoginFormComponent);
+
 
 
 /***/ }),
