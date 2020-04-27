@@ -9,6 +9,7 @@ import { AppFormModule } from "../../shared/form-module/form-module";
 import { BarecodeScannerLivestreamModule } from 'ngx-barcode-scanner';
 import { BarcodeScannerComponent } from "./barcode-scanner.component";
 
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 // ce fichier permet d’ajouter des composants spécifiques à la page et de rendre disponible le fichier de routing de la page dans le fichier de routing général de l’application
 
@@ -20,7 +21,8 @@ import { BarcodeScannerComponent } from "./barcode-scanner.component";
         UserInterfaceModule,
         AppFormModule,
         CommonModule,
-        BarecodeScannerLivestreamModule
+        BarecodeScannerLivestreamModule,
+        ZXingScannerModule
     ],
     bootstrap: [ BarcodeScannerComponent ]
 })

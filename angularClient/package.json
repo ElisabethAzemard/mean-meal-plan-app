@@ -19,6 +19,8 @@
     "@angular/platform-browser": "~8.2.13",
     "@angular/platform-browser-dynamic": "~8.2.13",
     "@angular/router": "~8.2.13",
+    "@zxing/library": "^0.16.3",
+    "@zxing/ngx-scanner": "^3.0.0",
     "bulma": "^0.8.2",
     "ngx-barcode-scanner": "0.0.7",
     "quagga": "^0.12.1",

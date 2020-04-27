@@ -1,10 +1,12 @@
 <p>barcode-scanner works !</p>
 
-<div><!--[hidden]="!barcodeValue"-->
-    Code barre : {{barcodeValue}}
+<div>
+    Code barre : {{ barcodeValue }}
 </div>
-<barcode-scanner-livestream
-        type="ean"
-        (valueChanges)="onValueChanges($event)"
-        (started)="onStarted"></barcode-scanner-livestream>
+
+<form>
+</form>
+<zxing-scanner
+    [formats]="allowedFormats"
+    (scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
 
