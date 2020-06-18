@@ -60,12 +60,14 @@ let ShoppingListComponent = class ShoppingListComponent {
         });
         this.addItemToInventory = (addedItemId) => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             console.log('adding item to inventory');
+            console.log(addedItemId);
             // toggle toBuy status & remove 1
-            yield this.CrudService.adjustItemInventoryQuantity('item', addedItemId, { "toBuy": false }, true); // true = increment & false = decrement
+            yield this.CrudService.adjustItemInventoryQuantity('item', addedItemId, { "toBuy": false }, 1); // true = increment & false = decrement
             // update shopping list
-            this.updateInventoryList();
+            this.getShoppingList();
+            // this.getInventoryList();
         });
-        this.updateInventoryList = () => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+        this.getInventoryList = () => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             // get items with property toBuy === true
             this.items = yield this.CrudService.getItemsInInventory();
         });

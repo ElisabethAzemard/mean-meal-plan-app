@@ -31,16 +31,16 @@ export class InventoryComponent implements OnInit {
         console.log('decrementing');
         // get item object. If it is essential, add to shopping list on last element removed from inventory
         if (removedItem.essential === true && removedItem.quantity === 1) {
-            await this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": true }, false); // true = increment & false = decrement
+            await this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": true }, '-1'); // true = increment & false = decrement
 
         } else {
-            await this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": false }, false); // true = increment & false = decrement
+            await this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": false }, '-1'); // true = increment & false = decrement
         }
     }
 
     public incrementQty = async (addedItemId) => {
         console.log('incrementing');
-        await this.CrudService.adjustItemInventoryQuantity('item', addedItemId, null, true); // true = increment & false = decrement
+        await this.CrudService.adjustItemInventoryQuantity('item', addedItemId, null, 1); // true = increment & false = decrement
     }
 
     private getInventoryList = async () => {

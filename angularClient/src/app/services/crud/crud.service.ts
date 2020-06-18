@@ -118,7 +118,7 @@ export class CrudService {
     };
 
     // CRUD: decrement qty on inventory item
-    public adjustItemInventoryQuantity(endpoint: string, id: string, data, incrementQty: boolean ): Promise<any> {
+    public adjustItemInventoryQuantity(endpoint: string, id: string, data, incrementQty: any): Promise<any> {
         return this.HttpClient
             .patch(`/api/${endpoint}/${id}?quantity=${incrementQty}`, data, this.setHeaders())
             .toPromise()

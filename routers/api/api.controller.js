@@ -64,31 +64,9 @@ const findOneItem = (req) => {
 // update quantity for one item, by id
 const updateItem = (req) => {
     return new Promise((resolve, reject) => {
-        if (req.query.quantity && req.query.quantity == true) {
+        if (req.query.quantity) {
             console.log('adding query')
-            Models[req.params.endpoint].findOneAndReplace({ _id: req.params.id }, { ...req.body, $inc: { 'quantity': 1 } }, (err, document) => {
-                if (err) {
-                    return reject(err)
-                } else {
-                    Models[req.params.endpoint].findById(req.params.id, (err, updated) => {
-                        err ? reject(err) : resolve(updated);
-                    })
-                }
-            })
-        } else if (req.query.quantity && req.query.quantity == false) {
-            console.log('removing query')
-            Models[req.params.endpoint].findOneAndReplace({ _id: req.params.id }, { ...req.body, $inc: { 'quantity': -1 } }, (err, document) => {
-                if (err) {
-                    return reject(err)
-                } else {
-                    Models[req.params.endpoint].findById(req.params.id, (err, updated) => {
-                        err ? reject(err) : resolve(updated);
-                    })
-                }
-            })
-        } else if (req.query.quantity && req.query.quantity == undefined) {
-            console.log('no quantity query')
-            Models[req.params.endpoint].findOneAndReplace({ _id: req.params.id }, { ...req.body, $inc: { 'quantity': 0 } }, (err, document) => {
+            Models[req.params.endpoint].findOneAndUpdate({ _id: req.params.id }, { ...req.body, $inc: { 'quantity': req.query.quantity } }, (err, document) => {
                 if (err) {
                     return reject(err)
                 } else {

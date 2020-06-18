@@ -56,15 +56,15 @@ let InventoryComponent = class InventoryComponent {
             console.log('decrementing');
             // get item object. If it is essential, add to shopping list on last element removed from inventory
             if (removedItem.essential === true && removedItem.quantity === 1) {
-                yield this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": true }, false); // true = increment & false = decrement
+                yield this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": true }, '-1'); // true = increment & false = decrement
             }
             else {
-                yield this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": false }, false); // true = increment & false = decrement
+                yield this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": false }, '-1'); // true = increment & false = decrement
             }
         });
         this.incrementQty = (addedItemId) => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             console.log('incrementing');
-            yield this.CrudService.adjustItemInventoryQuantity('item', addedItemId, null, true); // true = increment & false = decrement
+            yield this.CrudService.adjustItemInventoryQuantity('item', addedItemId, null, 1); // true = increment & false = decrement
         });
         this.getInventoryList = () => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             this.items = yield this.CrudService.getItemsInInventory();
