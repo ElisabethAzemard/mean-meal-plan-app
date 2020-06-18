@@ -34,17 +34,19 @@ export class ShoppingListComponent implements OnInit {
 
     public addItemToInventory = async (addedItemId) => {
         console.log('adding item to inventory');
+        console.log(addedItemId);
         // toggle toBuy status & remove 1
         await this.CrudService.adjustItemInventoryQuantity('item', addedItemId, { "toBuy": false }, true); // true = increment & false = decrement
 
         // update shopping list
-        this.updateInventoryList();
+        // this.updateInventoryList();
+        this.getShoppingList();
     }
 
-    public updateInventoryList = async () => {
-        // get items with property toBuy === true
-        this.items = await this.CrudService.getItemsInInventory();
-    }
+    // public updateInventoryList = async () => {
+    //     // get items with property toBuy === true
+    //     this.items = await this.CrudService.getItemsInInventory();
+    // }
 
     public getShoppingList = async () => {
         this.items = await this.CrudService.getItemsOnShoppingList();
