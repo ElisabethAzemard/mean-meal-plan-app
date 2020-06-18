@@ -1,0 +1,25 @@
+<h2 class="title">Add Item to shopping list</h2>
+<form
+    [formGroup]="formData"
+    (submit)="addItem.emit(formData.value); resetForm();"
+    class="form">
+    <div class="field has-addons">
+        <div class="control is-expanded">
+            <input formControlName="name"
+                type="email"
+                name="email"
+                required
+                minlength="5"
+                placeholder="Add an item..."
+                class="input is-primary is-small">
+        </div>
+        <div class="control">
+            <button type="submit" class="button is-primary is-small">
+                <span class="icon is-small">
+                    <fa-icon [icon]="faCheck"
+                        aria-role="button"></fa-icon>
+                </span>
+            </button>
+        </div>
+    </div>
+</form>

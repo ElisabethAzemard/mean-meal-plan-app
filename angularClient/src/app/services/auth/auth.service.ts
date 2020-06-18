@@ -1,45 +1,89 @@
 /* IMPORTS */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-
+import { ObservablesService } from "../observables/observables.service";
 import { UserModel } from "../../models/user.model";
 
 
-/* DEFINITION */
-@Injectable( { providedIn: 'root' } )
-
-
-/* EXPORT */
+/* DEFINITION & EXPORT */
+@Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  // Define API address
-  private apiUrl = '/api/auth'
+    // PROPERTIES
+    private apiUrl = '/api/auth'
 
-  // Inject HttpCLient into the class
-  constructor( private http: HttpClient ) { }
 
-  // Function to register user
-  public registerUser(user: UserModel): Promise<any> {
+    // DEPENDENCIES INJECTION
+    constructor(
+        private HttpClient: HttpClient,
+        private ObservablesService: ObservablesService) { }
 
-    // Delete repeatePassword property from the user object (for checkFields)
-    delete user.repeatePassword;
 
-    // Header configuration
-    let myHeader = new HttpHeaders().set('Content-Type', 'application/json')
+    // METHODS
+    // request headers settings
+    private setHeaders = () => {
+        // set header
+        const myHeader = new HttpHeaders();
+        myHeader.append('Content-Type', 'application/json');
 
-    // Make an HTTP GET call
-    return this.http.post(this.apiUrl + '/register', user, { headers: myHeader })
-      .toPromise().then(this.getData).catch(this.handelError)
-  }
+        // return header
+        return { headers: myHeader };
+    };
 
-  // Fonction to parse SUCCESS response
-  private getData(response: any) {
-    // return res || {};
-    return Promise.resolve(response || {});
-  }
+    // register new user
+    public registerUser(user: UserModel): Promise<any> {
+        // Delete repeatpassword property from the user object (for checkFields)
+        delete user.repeatpassword;
 
-  // Fonction to parse ERROR response
-  private handelError(response: any) {
-    return Promise.reject(response.error);
-  }
+        return this.HttpClient
+            .post(`${this.apiUrl}/register`, user, this.setHeaders())
+            .toPromise()
+            .then(data => this.getData('register', data))
+            .catch(this.handleError)
+    }
+
+    public logInUser(credentials: any): Promise<any> {
+        return this.HttpClient
+            .post(`${this.apiUrl}/login`, credentials, this.setHeaders())
+            .toPromise()
+            .then(data => this.getData('login', data))
+            .catch(this.handleError);
+    }
+
+    public logOutUser(): Promise<any> {
+        return this.HttpClient
+            .get(`${this.apiUrl}/logout`, this.setHeaders())
+            .toPromise()
+            .then(data => this.getData('logout', data))
+            .catch(this.handleError);
+    }
+
+    // get user info
+    public getUserInfo(): Promise<any> {
+        return this.HttpClient
+            .get(this.apiUrl)
+            .toPromise()
+            .then(data => this.getData('auth', data))
+            .catch(this.handleError);
+    };
+
+    // Fonction to parse SUCCESS response
+    private getData = (endpoint: string, apiResponse: any) => {
+        switch (endpoint) {
+            case 'logout':
+                this.ObservablesService.setObservableData('user', null)
+                break;
+
+            default:
+                // Set user info Observable value
+                this.ObservablesService.setObservableData('user', apiResponse.data)
+                break;
+        }
+
+        // Return data
+        return apiResponse || {};
+    }
+
+    // Fonction to parse ERROR response
+    private handleError = (apiError: any) => Promise.reject(apiError.error);
 }

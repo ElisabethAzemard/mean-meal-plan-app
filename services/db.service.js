@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 /* SERVICE DEFINITION */
 const initClient = () => {
     return new Promise( (resolve, reject) => {
-        mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+        mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
         .then( db => resolve( { db: db, url: process.env.MONGO_URL } ))
         .catch( error => reject(`Couldn't connect to MongoDB`, error) )
     })

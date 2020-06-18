@@ -1,1 +1,11 @@
-<p>inventory works!</p>
+<section class="section">
+    <h2>Inventory</h2>
+    <ul *ngFor="let hereitem of items"
+        class="block-list is-small">
+        <app-single-inventory-item
+            [item]="hereitem"
+            (removeItemFromInventory)="removeItemFromInventory($event)"
+            (incrementQty)="incrementQty($event)"
+            (decrementQty)="decrementQty($event)"></app-single-inventory-item>
+    </ul>
+</section>

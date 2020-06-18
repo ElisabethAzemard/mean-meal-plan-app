@@ -10,7 +10,7 @@ const { register, login, logout, getUserInfo } = require('./auth.controller');
 
 
 /* ROUTES DEFINITION */
-class RouterClass {
+class AuthRouterClass {
     // inject Passport to secure routes
     constructor( { passport } ) { this.passport = passport; }
 
@@ -42,7 +42,7 @@ class RouterClass {
                 register(req)
                     .then(apiResponse => {
                         return res.status(201).json({
-                            message: 'Indentity created',
+                            message: 'Identity created',
                             data: apiResponse,
                             err: null
                         })
@@ -81,7 +81,7 @@ class RouterClass {
                 login(req, res)
                     .then(apiResponse => {
                         return res.status(201).json({
-                            message: 'Indentity found',
+                            message: 'Identity found',
                             data: apiResponse,
                             err: null
                         })
@@ -101,7 +101,7 @@ class RouterClass {
             logout(res)
                 .then(apiResponse => {
                     return res.status(201).json({
-                        message: 'Indentity found',
+                        message: 'Identity found',
                         data: apiResponse,
                         err: null
                     })
@@ -147,4 +147,4 @@ class RouterClass {
 
 
 /* EXPORT */
-module.exports = RouterClass;
+module.exports = AuthRouterClass;

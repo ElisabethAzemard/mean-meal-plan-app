@@ -1,42 +1,82 @@
 /* IMPORTS */
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { UserModel } from "../../models/user.model";
 import { AuthService } from "../../services/auth/auth.service";
 
 
+
 /* DEFINITION */
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
+    selector: 'app-home-page',
+    templateUrl: './home-page.component.html',
 })
 
 
 /* EXPORT */
 export class HomePageComponent implements OnInit {
 
-  // Variables
-  public registrationObject: UserModel = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    repeatePassword: '',
-    cgu: false
-  }
+    // Variables
+    registered: boolean = true;
 
-  // Inject AuthService in the class
-  constructor(private authService: AuthService ) { }
+    public registrationObject: UserModel = {
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: '',
+        repeatpassword: '',
+    }
 
-  // Create a function to register user
-  public registerNewUser = (user: UserModel) => {
-    console.log('Validated form HOME', user);
+    // Inject AuthService in the class
+    constructor(
+        private AuthService: AuthService,
+        private Router: Router,
+    ) { }
 
-    // Use the service to register user
-    this.authService.registerUser(user)
-      .then(apiSuccess => console.log(apiSuccess))
-      .catch(apiError => console.error(apiError))
 
-  };
+    // METHODS
+    // ----- USER -----
+    // log in
+    private loginUser = async (credentials: string) => {
+        // log in user in Api
+        const userInfo = await this.AuthService.logInUser(credentials);
 
-  ngOnInit() { }
+        // if login is successful, redirect to /news
+        if (userInfo) {
+            this.Router.navigateByUrl('/shopping-list');
+        }
+    };
+
+    // display registration form when click on "not registered yet?"
+    public displayRegistrationForm = () => {
+        this.registered = false;
+    }
+
+    // register user
+    public registerUser = async (user: UserModel) => {
+        // send registration form to auth API
+        const userInfo = await this.AuthService.registerUser(user);
+        console.log(userInfo);
+        //if user registration is successful, redirect to /news
+        if (userInfo) {
+            this.Router.navigateByUrl('/shopping-list');
+        }
+    };
+
+    // Only on connected pages (no home)
+    private getUserInfo = () => {
+        // Use CrudService to get user infos
+        this.AuthService.getUserInfo()
+            .then(data => {
+                console.log('SUCCES request', data);
+            })
+            .catch(error => {
+                console.log('ERROR request', error);
+            });
+    };
+
+    ngOnInit() {
+        // this.getUserInfo();
+    }
 }

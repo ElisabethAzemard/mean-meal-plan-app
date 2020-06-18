@@ -1,4 +1,9 @@
-<app-registration-form
-    [formObject]="registerObject"
-    (sendFormData)="registerNewUser($event)"></app-registration-form>
-<p>home-page works!</p>
+<section class="section">
+    <app-login-form (formSubmit)="loginUser($event)"
+        (notRegistered)="displayRegistrationForm()"></app-login-form>
+</section>
+
+<section *ngIf="!registered"
+    class="section">
+    <app-registration-form (formSubmit)="registerUser($event)"></app-registration-form>
+</section>

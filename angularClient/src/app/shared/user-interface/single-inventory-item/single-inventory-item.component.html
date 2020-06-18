@@ -1,0 +1,21 @@
+<li>
+    <div class="field has-addons">
+        <div class="control" (click)="removeItemFromInventory.emit(item._id)">
+            <span>
+                <fa-icon
+                    [icon]="faTimes"
+                    aria-role="button"></fa-icon>
+            </span>
+        </div>
+        <div class="control">
+            <p>{{ item.name }}</p>
+        </div>
+        <div class="control">
+            <button (click)="decrementQty.emit(item)" class="button is-primary is-small"><fa-icon [icon]="faMinus"
+                aria-role="button"></fa-icon></button>
+            <span class="button is-primary is-small is-outlined">{{ item.quantity }}</span>
+            <button (click)="incrementQty.emit(item._id)" class="button is-primary is-small"><fa-icon [icon]="faPlus"
+                aria-role="button"></fa-icon></button>
+        </div>
+    </div>
+</li>

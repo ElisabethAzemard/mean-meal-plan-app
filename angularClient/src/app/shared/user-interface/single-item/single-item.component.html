@@ -1,0 +1,8 @@
+<li>
+    <div class="field">
+        <input class="is-checkradio" type="checkbox" name="{{ item.name }}" id="{{ item.name }}" (change)="addItemToInventory.emit(item._id)">
+        <label for="{{ item.name }}">
+            {{ item.name }}
+        </label>
+    </div>
+</li>

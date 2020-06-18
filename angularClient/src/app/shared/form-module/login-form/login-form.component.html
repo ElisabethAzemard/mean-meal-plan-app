@@ -1,13 +1,37 @@
-<form [formGroup]="formData">
-    <input
-        formControlName="email"
-        type="email"
-        name="email"
-        required
-        minlength="5"
-        placeholder="Your email">
-
-    <button
-        [disabled]="!formData.valid"
-        type="submit">OK</button>
+<h2 class="title">Connexion</h2>
+<form [formGroup]="formData"
+    (submit)="formSubmit.emit(formData.value)"
+    class="form">
+    <div class="field">
+        <input formControlName="email"
+            type="email"
+            name="email"
+            required
+            minlength="5"
+            placeholder="Your email..."
+            class="input is-primary is-small">
+    </div>
+    <div class="field">
+        <input formControlName="password"
+            type="password"
+            name="password"
+            required
+            minlength="5"
+            placeholder="Your password..."
+            class="input is-primary is-small">
+    </div>
+    <div class="field level">
+        <div class="level-left">
+            <div class="level-item">
+                <button [disabled]="!formData.valid"
+                    type="submit"
+                    class="button is-primary is-small">OK</button>
+            </div>
+            <div class="level-item">
+                <a href="#"
+                    role="button"
+                    (click)="notRegistered.emit()">Not registered yet?</a>
+            </div>
+        </div>
+    </div>
 </form>

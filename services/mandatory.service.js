@@ -1,9 +1,32 @@
 /* SERVICE DEFINITION */
 const MandatoryFields = {
-    item: ['name', 'barcode', 'category', 'storage'],
-    recipe: ['name', 'ingredients', 'steps', 'timing'],
-    identity: ['email', 'password'],
-    register: ['email', 'password', 'firstname', 'lastname', 'birthdate']
+    item: [
+        'name',
+        'barcode',
+        'category',
+        'storage',
+        'quantity',
+        'essential',
+        'toBuy',
+        'urgent',
+        'author'
+    ],
+    recipe: [
+        'name',
+        'ingredients',
+        'steps',
+        'timing'
+    ],
+    identity: [
+        'email',
+        'password'
+    ],
+    register: [
+        'firstname',
+        'lastname',
+        'email',
+        'password'
+    ]
 };
 
 /* SERVICE FUNCTIONS EXPORT */

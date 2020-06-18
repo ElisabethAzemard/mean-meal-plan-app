@@ -1,15 +1,43 @@
 <header>
-    <h1>{{headerTitle}}</h1>
-    <nav>
-        <ul> <!-- *ngIf="path === '/todo'" -->
-            <li><a [routerLink]="'/'">Home</a></li>
-            <li><a [routerLink]="'/shopping-list'">Liste de courses</a></li>
-            <li><a [routerLink]="'/barcode-scanner'">Scanner</a></li>
-            <li><a [routerLink]="'/inventory'">Inventaire</a></li>
-            <li><a [routerLink]="'/recipes'">Recettes</a></li>
-            <li><a [routerLink]="'/meal-plan'">Planning</a></li>
-            <li (click)="logoutUser()">Log Out</li>
-        </ul>
+    <nav class="navbar is-primary">
+        <div class="navbar-brand">
+            <img src="assets/img/logo.png"
+                alt="logo"
+                id="logoImage">
+            <h1 class="title is-3 has-text-white">Remy</h1>
+            <a role="button"
+                class="navbar-burger"
+                aria-label="menu"
+                aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a *ngIf="!userData"
+                    [routerLink]="'/'"
+                    class="navbar-item">Home</a>
+                <a *ngIf="userData"
+                    [routerLink]="'/shopping-list'"
+                    class="navbar-item">Liste de courses</a>
+                <a *ngIf="userData"
+                    [routerLink]="'/barcode-scanner'"
+                    class="navbar-item">Scanner</a>
+                <a *ngIf="userData"
+                    [routerLink]="'/inventory'"
+                    class="navbar-item">Inventaire</a>
+                <a *ngIf="userData"
+                    [routerLink]="'/recipes'"
+                    class="navbar-item">Recettes</a>
+                <a *ngIf="userData"
+                    [routerLink]="'/meal-plan'"
+                    class="navbar-item">Planning</a>
+                <a *ngIf="userData"
+                    (click)="logout()"
+                    class="navbar-item">Log out</a>
+            </div>
+        </div>
     </nav>
 </header>
-<p>header works !</p>

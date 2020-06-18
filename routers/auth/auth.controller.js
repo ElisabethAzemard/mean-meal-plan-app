@@ -5,8 +5,9 @@ const { encryptData, decryptData } = require('../../services/crypto.service');
 
 /* METHODS */
 const register = (req) => {
+    console.log('req register', req);
+
     return new Promise((resolve, reject) => {
-        console.log('register CTRL')
         // Encrypt password
         bcrypt.hash(req.body.password, 10)
             .then(hash => {
@@ -36,17 +37,13 @@ const register = (req) => {
 };
 
 const login = (req, res) => {
+    console.log('req login',req);
     return new Promise((resolve, reject) => {
-
-        console.log(req.body)
-
         Models.identity.findOne({ email: req.body.email }, (err, identity) => {
             if (err) {
                 return reject(err);
             }
             else {
-                console.log(identity)
-
                 // Check identity password
                 const validatedPassword = bcrypt.compareSync(req.body.password, identity.password);
                 if (!validatedPassword) {

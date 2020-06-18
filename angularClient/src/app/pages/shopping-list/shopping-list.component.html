@@ -1,1 +1,8 @@
-<p>shopping-list works!</p>
+<section class="section">
+    <app-add-item (addItem)="addItemToList($event)"></app-add-item>
+</section>
+<section class="section">
+    <ul *ngFor="let item of items" class="block-list is-small">
+        <app-single-item [item]="item" (addItemToInventory)="addItemToInventory($event)"></app-single-item>
+    </ul>
+</section>

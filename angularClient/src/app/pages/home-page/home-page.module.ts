@@ -1,5 +1,7 @@
 /* IMPORTS */
 import { NgModule } from "@angular/core";
+import { CommonModule } from '@angular/common';
+
 import { ComponentRouter } from "./home-page.router";
 
 import { UserInterfaceModule } from '../../shared/user-interface/user-interface.module';
@@ -13,7 +15,12 @@ import { HomePageComponent } from "./home-page.component";
 /* DEFINITION */
 @NgModule({
     declarations: [ HomePageComponent ],
-    imports: [ ComponentRouter, UserInterfaceModule, AppFormModule ]
+    imports: [
+        CommonModule,
+        ComponentRouter,
+        UserInterfaceModule,
+        AppFormModule
+    ]
 })
 
 

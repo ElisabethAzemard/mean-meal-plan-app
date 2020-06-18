@@ -12,7 +12,7 @@ Definition
         identity: [Schema.Types.ObjectId],
         firstname: String,
         lastname: String,
-        birthdate: String,
+        password: String
     });
 //
 
