@@ -127,13 +127,13 @@ export class CrudService {
     };
 
     // CRUD: make qty 0 on inventory item
-    public removeItemFromInventory(endpoint: string, id: string): Promise<any> {
-        return this.HttpClient
-            .patch(`/api/${endpoint}/${id}`, this.setHeaders())
-            .toPromise()
-            .then(data => this.getData(endpoint, data))
-            .catch(this.handleError);
-    };
+    // public removeItemFromInventory(endpoint: string, id: string): Promise<any> {
+    //     return this.HttpClient
+    //         .patch(`/api/${endpoint}/${id}`, this.setHeaders())
+    //         .toPromise()
+    //         .then(data => this.getData(endpoint, data))
+    //         .catch(this.handleError);
+    // };
 
     /* METHODS TO GET API RESPONSES */
     // Get the API response

@@ -22,9 +22,15 @@ export class InventoryComponent implements OnInit {
             .subscribe(observerInventoryData => { this.items = observerInventoryData; });
     }
 
-    public removeItemFromInventory = async (removedItemId) => {
+    public removeItemFromInventory = async (removedItem) => {
         console.log('removing from invent.');
-        await this.CrudService.removeItemFromInventory('item', removedItemId); // true = increment & false = decrement
+        if (removedItem.essential === true && removedItem.quantity === 1) {
+        await this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": true }, 0); // true = increment & false = decrement
+        } else {
+            await this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": false }, 0); // true = increment & false = decrement
+        }
+        // update inventory state
+        this.getInventoryList();
     }
 
     public decrementQty = async (removedItem) => {
@@ -36,11 +42,17 @@ export class InventoryComponent implements OnInit {
         } else {
             await this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": false }, '-1'); // true = increment & false = decrement
         }
+
+        // update inventory state
+        this.getInventoryList();
     }
 
     public incrementQty = async (addedItemId) => {
         console.log('incrementing');
         await this.CrudService.adjustItemInventoryQuantity('item', addedItemId, null, 1); // true = increment & false = decrement
+
+        // update inventory state
+        this.getInventoryList();
     }
 
     private getInventoryList = async () => {

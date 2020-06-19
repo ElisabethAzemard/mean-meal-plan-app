@@ -65,7 +65,19 @@ const findOneItem = (req) => {
 const updateItem = (req) => {
     return new Promise((resolve, reject) => {
         if (req.query.quantity) {
-            console.log('adding query')
+            // if there's a query param == quantity, use it to update item
+            if (req.query.quantity == 0) {
+                Models[req.params.endpoint].findOneAndUpdate({ _id: req.params.id }, { ...req.body, quantity: req.query.quantity }, (err, document) => {
+                    if (err) {
+                        return reject(err)
+                    } else {
+                        Models[req.params.endpoint].findById(req.params.id, (err, updated) => {
+                            err ? reject(err) : resolve(updated);
+                        })
+                    }
+                })
+            }
+
             Models[req.params.endpoint].findOneAndUpdate({ _id: req.params.id }, { ...req.body, $inc: { 'quantity': req.query.quantity } }, (err, document) => {
                 if (err) {
                     return reject(err)
@@ -76,8 +88,7 @@ const updateItem = (req) => {
                 }
             })
         } else {
-            console.log('here you are')
-            console.log(req.query)
+            // if there's no quantity query param, use req.body to update
             Models[req.params.endpoint].findByIdAndUpdate(req.params.id, req.body, (err, document) => {
                 if (err) {
                     return reject(err)

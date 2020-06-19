@@ -48,9 +48,16 @@ let InventoryComponent = class InventoryComponent {
     constructor(CrudService, ObservablesService) {
         this.CrudService = CrudService;
         this.ObservablesService = ObservablesService;
-        this.removeItemFromInventory = (removedItemId) => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+        this.removeItemFromInventory = (removedItem) => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             console.log('removing from invent.');
-            yield this.CrudService.removeItemFromInventory('item', removedItemId); // true = increment & false = decrement
+            if (removedItem.essential === true && removedItem.quantity === 1) {
+                yield this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": true }, 0); // true = increment & false = decrement
+            }
+            else {
+                yield this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": false }, 0); // true = increment & false = decrement
+            }
+            // update inventory state
+            this.getInventoryList();
         });
         this.decrementQty = (removedItem) => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             console.log('decrementing');
@@ -61,10 +68,14 @@ let InventoryComponent = class InventoryComponent {
             else {
                 yield this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": false }, '-1'); // true = increment & false = decrement
             }
+            // update inventory state
+            this.getInventoryList();
         });
         this.incrementQty = (addedItemId) => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             console.log('incrementing');
             yield this.CrudService.adjustItemInventoryQuantity('item', addedItemId, null, 1); // true = increment & false = decrement
+            // update inventory state
+            this.getInventoryList();
         });
         this.getInventoryList = () => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             this.items = yield this.CrudService.getItemsInInventory();

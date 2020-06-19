@@ -33,6 +33,14 @@ let CrudService = class CrudService {
             // return header
             return { headers: myHeader };
         };
+        // CRUD: make qty 0 on inventory item
+        // public removeItemFromInventory(endpoint: string, id: string): Promise<any> {
+        //     return this.HttpClient
+        //         .patch(`/api/${endpoint}/${id}`, this.setHeaders())
+        //         .toPromise()
+        //         .then(data => this.getData(endpoint, data))
+        //         .catch(this.handleError);
+        // };
         /* METHODS TO GET API RESPONSES */
         // Get the API response
         this.getData = (endpoint, apiResponse) => {
@@ -149,15 +157,6 @@ let CrudService = class CrudService {
     adjustItemInventoryQuantity(endpoint, id, data, incrementQty) {
         return this.HttpClient
             .patch(`/api/${endpoint}/${id}?quantity=${incrementQty}`, data, this.setHeaders())
-            .toPromise()
-            .then(data => this.getData(endpoint, data))
-            .catch(this.handleError);
-    }
-    ;
-    // CRUD: make qty 0 on inventory item
-    removeItemFromInventory(endpoint, id) {
-        return this.HttpClient
-            .patch(`/api/${endpoint}/${id}`, this.setHeaders())
             .toPromise()
             .then(data => this.getData(endpoint, data))
             .catch(this.handleError);
