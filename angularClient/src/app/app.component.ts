@@ -13,7 +13,7 @@ import { AuthService } from "./services/auth/auth.service";
 
 /* EXPORT */
 export class AppComponent implements OnInit {
-  title = 'Remy';
+  title = 'Bon app\'';
 
   constructor(private AuthService: AuthService, private Router: Router) {
 

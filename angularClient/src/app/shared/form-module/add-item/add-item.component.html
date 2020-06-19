@@ -1,4 +1,3 @@
-<h2 class="title">Add Item to shopping list</h2>
 <form
     [formGroup]="formData"
     (submit)="addItem.emit(formData.value); resetForm();"
@@ -10,7 +9,7 @@
                 name="email"
                 required
                 minlength="5"
-                placeholder="Add an item..."
+                placeholder="Ajouter un élément..."
                 class="input is-primary is-small">
         </div>
         <div class="control">

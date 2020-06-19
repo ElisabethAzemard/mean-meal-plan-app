@@ -1,21 +1,35 @@
 <li>
-    <div class="field has-addons">
-        <div class="control" (click)="removeItemFromInventory.emit(item)">
-            <span>
-                <fa-icon
-                    [icon]="faTimes"
-                    aria-role="button"></fa-icon>
-            </span>
+    <div class="level is-mobile">
+        <div class="level-left">
+            <div class="level-item">
+                <div class="control"
+                    (click)="removeItemFromInventory.emit(item)">
+                    <span class="is-primary">
+                        <fa-icon [icon]="faTimes"
+                            aria-role="button"></fa-icon>
+                    </span>
+                </div>
+            </div>
+            <div class="level-item">
+                <div class="control level-item">
+                    <p>{{ item.name }}</p>
+                </div>
+            </div>
         </div>
-        <div class="control">
-            <p>{{ item.name }}</p>
-        </div>
-        <div class="control">
-            <button (click)="decrementQty.emit(item)" class="button is-primary is-small"><fa-icon [icon]="faMinus"
-                aria-role="button"></fa-icon></button>
-            <span class="button is-primary is-small is-outlined">{{ item.quantity }}</span>
-            <button (click)="incrementQty.emit(item._id)" class="button is-primary is-small"><fa-icon [icon]="faPlus"
-                aria-role="button"></fa-icon></button>
+        <div class="level-right">
+            <div class="level-item field has-addons">
+                    <button (click)="decrementQty.emit(item)"
+                        class="button is-primary is-small">
+                        <fa-icon [icon]="faMinus"
+                            aria-role="button"></fa-icon>
+                    </button>
+                    <span class="button is-primary is-small is-outlined">{{ item.quantity }}</span>
+                    <button (click)="incrementQty.emit(item._id)"
+                        class="button is-primary is-small">
+                        <fa-icon [icon]="faPlus"
+                            aria-role="button"></fa-icon>
+                    </button>
+            </div>
         </div>
     </div>
 </li>

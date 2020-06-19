@@ -1,4 +1,4 @@
-<h2 class="title">Connexion</h2>
+<h2 class="title is-4 has-text-centered">Connexion</h2>
 <form [formGroup]="formData"
     (submit)="formSubmit.emit(formData.value)"
     class="form">
@@ -8,7 +8,7 @@
             name="email"
             required
             minlength="5"
-            placeholder="Your email..."
+            placeholder="Mon email..."
             class="input is-primary is-small">
     </div>
     <div class="field">
@@ -17,7 +17,7 @@
             name="password"
             required
             minlength="5"
-            placeholder="Your password..."
+            placeholder="Mon mot de passe..."
             class="input is-primary is-small">
     </div>
     <div class="field level">
@@ -25,12 +25,12 @@
             <div class="level-item">
                 <button [disabled]="!formData.valid"
                     type="submit"
-                    class="button is-primary is-small">OK</button>
+                    class="button is-primary is-small">Je me connecte</button>
             </div>
             <div class="level-item">
                 <a href="#"
                     role="button"
-                    (click)="notRegistered.emit()">Not registered yet?</a>
+                    (click)="notRegistered.emit()">Pas encore inscrit ?</a>
             </div>
         </div>
     </div>

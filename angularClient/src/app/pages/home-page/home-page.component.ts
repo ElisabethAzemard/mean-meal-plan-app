@@ -53,6 +53,11 @@ export class HomePageComponent implements OnInit {
         this.registered = false;
     }
 
+    // display login form when click on "already registered?"
+    public displayLoginForm = () => {
+        this.registered = true;
+    }
+
     // register user
     public registerUser = async (user: UserModel) => {
         // send registration form to auth API

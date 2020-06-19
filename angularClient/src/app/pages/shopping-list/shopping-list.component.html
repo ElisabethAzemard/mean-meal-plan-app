@@ -1,8 +1,17 @@
+<section class="section has-text-centered">
+    <h2 class="title is-4">Liste de courses</h2>
+</section>
+
 <section class="section">
     <app-add-item (addItem)="addItemToList($event)"></app-add-item>
 </section>
+
 <section class="section">
     <ul *ngFor="let item of items" class="block-list is-small">
         <app-single-item [item]="item" (addItemToInventory)="addItemToInventory($event)"></app-single-item>
     </ul>
+</section>
+
+<section class="section has-text-centered" *ngIf="items.length == 0">
+    <p>Il n'y a encore rien dans votre liste de courses...</p>
 </section>

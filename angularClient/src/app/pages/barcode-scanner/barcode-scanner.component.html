@@ -1,12 +1,10 @@
-<p>barcode-scanner works !</p>
-
-<div>
-    Code barre : {{ barcodeValue }}
-</div>
-
-<form>
-</form>
+<section class="section">
+    <h2 class="title has-text-centered">Scanner un code barre</h2>
+</section>
 <zxing-scanner
-    [formats]="allowedFormats"
-    (scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
+[formats]="allowedFormats"
+(scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
 
+<section class="section">
+    <p>Code barre détecté : {{ barcodeValue }}</p>
+</section>

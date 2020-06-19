@@ -1,52 +1,51 @@
-<h2 class="title">Inscription</h2>
+<h2 class="title is-4 has-text-centered">Inscription</h2>
 <!-- Use the NgModel for two-way data binding -->
 <form
     [formGroup]="formData"
     (submit)="formSubmit.emit(formData.value)">
     <div class="field">
-        <label for="firstName">Votre prénom <span *ngIf="firstName">Obligatoire</span></label>
         <input
             formControlName="firstname"
             type="text"
             name="firstname"
-            class="input is-primary is-small">
+            class="input is-primary is-small"
+            placeholder="Mon prénom...">
     </div>
 
     <div class="field">
-        <label for="lastName">Votre nom <span *ngIf="lastName">Obligatoire</span></label>
         <input
             formControlName="lastname"
             type="text"
             name="lastname"
-            class="input is-primary is-small">
+            class="input is-primary is-small"
+            placeholder="Mon nom...">
     </div>
 
     <div class="field">
-        <label for="email">Votre adresse mail <span *ngIf="email">Obligatoire</span></label>
         <input
             formControlName="email"
             type="email"
             name="email"
-            class="input is-primary is-small">
+            class="input is-primary is-small"
+            placeholder="Mon adresse mail...">
     </div>
 
     <div class="field">
-        <label for="password">Votre mot de passe <span *ngIf="password">Obligatoire</span></label>
         <input
             formControlName="password"
             type="password"
             name="password"
-            class="input is-primary is-small">
+            class="input is-primary is-small"
+            placeholder="Mon mot de passe...">
     </div>
 
     <div class="field">
-        <label for="repeate-password">Répéter votre mot de passe<span
-                *ngIf="repeatpassword">Différent</span></label>
         <input
             formControlName="repeatpassword"
             type="password"
             name="repeatpassword"
-            class="input is-primary is-small">
+            class="input is-primary is-small"
+            placeholder="Répéter mon mot de passe...">
     </div>
 
     <div class="field">
@@ -54,7 +53,12 @@
             <div class="level-item">
                 <button [disabled]="!formData.valid"
                     type="submit"
-                    class="button is-primary is-small">Inscription</button>
+                    class="button is-primary is-small">Je m'inscris</button>
+            </div>
+            <div class="level-item">
+                <a href="#"
+                    role="button"
+                    (click)="alreadyRegistered.emit()">Déjà inscrit ?</a>
             </div>
         </div>
     </div>

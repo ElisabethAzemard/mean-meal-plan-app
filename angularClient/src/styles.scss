@@ -19,10 +19,10 @@ $grey-dark: $gunmetal;
 $grey-darker: $dark-gunmetal;
 
 // theme colors
-$primary: $ming;
+$primary: #000;
+$secondary: #f6c3b4;
 $link: $ming-dark;
 $danger: $red;
-
 
 // ----- ELEMENTS COLORS -----
 // global text
@@ -49,7 +49,6 @@ $radius: 0;
 // ----- FONT -----
 $family-sans-serif: "Nunito", sans-serif;
 
-
 // ----- IMPORTS -----
 @import "../node_modules/bulma/bulma.sass";
 @import "./node_modules/bulma-block-list/src/block-list.scss";
@@ -59,14 +58,44 @@ $family-sans-serif: "Nunito", sans-serif;
 // ----- GLOBAL STYLES -----
 @media screen and (min-width:769px){
     .section {
-        padding: 1.5rem 3rem;
+        padding: 1.5rem 3.5rem;
     }
 }
 
 .section {
-    padding: 1.5rem;
+    padding: .5rem;
+
+    &:first-of-type {
+        padding: 1.5rem .5rem 0 .5rem;
+    }
+
+    &:not(:first-of-type) {
+        padding: 1.5rem .5rem;
+    }
+
+    // &:last-of-type {
+    //     padding: 0 1.5rem 1.5rem 1.5rem;
+    // }
+
 }
 
 .button, .button.is-small {
     border-radius: 0;
+}
+
+// footer
+footer {
+    width: 100%;
+    padding: .2rem;
+    position: absolute;
+    bottom: 0;
+    background-color: $primary;
+
+    a {
+        color: $white;
+
+        &:hover {
+            color: $secondary;
+        }
+    }
 }

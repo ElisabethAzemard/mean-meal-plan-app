@@ -1,0 +1,49 @@
+<footer *ngIf="userData">
+    <div class="level is-centered is-mobile">
+        <div class="level-item">
+            <a [routerLink]="'/shopping-list'"
+                class="">
+                <span class="icon is-small">
+                    <fa-icon [icon]="faShoppingBasket"
+                        aria-role="button"></fa-icon>
+                </span>
+            </a>
+        </div>
+        <div class="level-item">
+            <a [routerLink]="'/inventory'"
+                class="">
+                <span class="icon is-small">
+                    <fa-icon [icon]="faList"
+                        aria-role="button"></fa-icon>
+                </span>
+            </a>
+        </div>
+        <div class="level-item">
+            <a [routerLink]="'/barcode-scanner'"
+                class="">
+                <span class="icon is-large">
+                    <fa-icon [icon]="faBarcode"
+                        aria-role="button" size="3x"></fa-icon>
+                </span>
+            </a>
+        </div>
+        <div class="level-item">
+            <a [routerLink]="'/recipes'"
+                class="">
+                <span class="icon is-small">
+                    <fa-icon [icon]="faQuestion"
+                        aria-role="button"></fa-icon>
+                </span>
+            </a>
+        </div>
+        <div class="level-item">
+            <a [routerLink]="'/meal-plan'"
+                class="">
+                <span class="icon is-small">
+                    <fa-icon [icon]="faCalendarWeek"
+                        aria-role="button"></fa-icon>
+                </span>
+            </a>
+        </div>
+    </div>
+</footer>

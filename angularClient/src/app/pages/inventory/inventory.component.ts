@@ -24,7 +24,7 @@ export class InventoryComponent implements OnInit {
 
     public removeItemFromInventory = async (removedItem) => {
         console.log('removing from invent.');
-        if (removedItem.essential === true && removedItem.quantity === 1) {
+        if (removedItem.essential === true) {
         await this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": true }, 0); // true = increment & false = decrement
         } else {
             await this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": false }, 0); // true = increment & false = decrement
