@@ -19,7 +19,6 @@ class AuthRouterClass {
 
         // POST 'api/auth/register': send data to register new user
         authRouter.post('/register', (req, res) => {
-            console.log(req.body);
             // Error: no body present
             if (typeof req.body === 'undefined' || req.body === null) {
                 return res.status(400).json({

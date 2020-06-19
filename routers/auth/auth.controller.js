@@ -5,8 +5,6 @@ const { encryptData, decryptData } = require('../../services/crypto.service');
 
 /* METHODS */
 const register = (req) => {
-    console.log('req register', req);
-
     return new Promise((resolve, reject) => {
         // Encrypt password
         bcrypt.hash(req.body.password, 10)
@@ -37,7 +35,6 @@ const register = (req) => {
 };
 
 const login = (req, res) => {
-    console.log('req login',req);
     return new Promise((resolve, reject) => {
         Models.identity.findOne({ email: req.body.email }, (err, identity) => {
             if (err) {

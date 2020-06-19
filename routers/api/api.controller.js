@@ -15,10 +15,8 @@ const createItem = (req) => {
 
 // get collection
 const readItem = (req) => {
-    console.log('reading item')
     // get items with a positive qty
     if (req.query.quantity) {
-        console.log('reading item with quantitty')
         return new Promise((resolve, reject) => {
             Models[req.params.endpoint].find({ quantity: { $gte: 1 } }, (err, collection) => {
                 err ? reject(err) : resolve(collection);
@@ -26,7 +24,6 @@ const readItem = (req) => {
         })
     }
     else if (req.query.toBuy) {
-        console.log('reading item with toBuy')
         return new Promise((resolve, reject) => {
             Models[req.params.endpoint].find({ toBuy: true }, (err, collection) => {
                 err ? reject(err) : resolve(collection);
@@ -34,9 +31,8 @@ const readItem = (req) => {
         })
     }
     else {
-        console.log('reading item with nothing')
         return new Promise((resolve, reject) => {
-            Models[req.params.endpoint].find(req.query, (err, collection) => {
+            Models[req.params.endpoint].find((err, collection) => {
                 err ? reject(err) : resolve(collection);
             })
         })
@@ -104,10 +100,8 @@ const updateItem = (req) => {
 
 // update one by name
 const updateItemByName = (req) => {
-    console.log('updating by name !')
     return new Promise((resolve, reject) => {
         Models[req.params.endpoint].findOneAndUpdate({ name: req.params.name }, req.body, (err, document) => {
-            // console.log('updatedstuff', document);
             if (err) {
                 return reject(err)
             } else {

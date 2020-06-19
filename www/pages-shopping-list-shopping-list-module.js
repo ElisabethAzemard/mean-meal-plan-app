@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<section class=\"section\">\n    <app-add-item (addItem)=\"addItemToList($event)\"></app-add-item>\n</section>\n<section class=\"section\">\n    <ul *ngFor=\"let item of items\" class=\"block-list is-small\">\n        <app-single-item [item]=\"item\" (addItemToInventory)=\"addItemToInventory($event)\"></app-single-item>\n    </ul>\n</section>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<section class=\"section has-text-centered\">\n    <h2 class=\"title is-4\">Liste de courses</h2>\n</section>\n\n<section class=\"section\">\n    <app-add-item (addItem)=\"addItemToList($event)\"></app-add-item>\n</section>\n\n<section class=\"section\">\n    <ul *ngFor=\"let item of items\" class=\"block-list is-small\">\n        <app-single-item [item]=\"item\" (addItemToInventory)=\"addItemToInventory($event)\"></app-single-item>\n    </ul>\n</section>\n\n<section class=\"section has-text-centered\" *ngIf=\"items.length == 0\">\n    <p>Quelqu'un a encore oublié de remplir la liste des courses...</p>\n</section>\n");
 
 /***/ }),
 
@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3Nob3BwaW5nLWxpc3Qvc2hvcHBpbmctbGlzdC5jb21wb25lbnQuc2NzcyJ9 */");
+/* harmony default export */ __webpack_exports__["default"] = ("@charset \"UTF-8\";\nh2.title:not(:last-child)   {\n  margin-bottom: 0.5rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvc2hvcHBpbmctbGlzdC9zaG9wcGluZy1saXN0LmNvbXBvbmVudC5zY3NzIiwiL1VzZXJzL0VsaXNhYmV0aC9EZXNrdG9wL21lYWwtcGxhbi1hcHAvYW5ndWxhckNsaWVudC9zcmMvYXBwL3BhZ2VzL3Nob3BwaW5nLWxpc3Qvc2hvcHBpbmctbGlzdC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxnQkFBZ0I7QUNDaEI7RUFDSSxxQkFBQTtBRENKIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvc2hvcHBpbmctbGlzdC9zaG9wcGluZy1saXN0LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGNoYXJzZXQgXCJVVEYtOFwiO1xuaDIudGl0bGU6bm90KDpsYXN0LWNoaWxkKSDCoCB7XG4gIG1hcmdpbi1ib3R0b206IDAuNXJlbTtcbn0iLCIvLyB0aXRsZXNcbmgyLnRpdGxlOm5vdCg6bGFzdC1jaGlsZCnCoHtcbiAgICBtYXJnaW4tYm90dG9tOiAuNXJlbTtcbn1cbiJdfQ== */");
 
 /***/ }),
 
@@ -59,8 +59,6 @@ let ShoppingListComponent = class ShoppingListComponent {
             // If not, add to DB / local storage / observables => automatically fill model fields with default or ask user ?
         });
         this.addItemToInventory = (addedItemId) => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            console.log('adding item to inventory');
-            console.log(addedItemId);
             // toggle toBuy status & remove 1
             yield this.CrudService.adjustItemInventoryQuantity('item', addedItemId, { "toBuy": false }, 1); // true = increment & false = decrement
             // update shopping list
@@ -73,7 +71,6 @@ let ShoppingListComponent = class ShoppingListComponent {
         });
         this.getShoppingList = () => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             this.items = yield this.CrudService.getItemsOnShoppingList();
-            console.log('heres items', this.items);
         });
         // get shopping list data from observer
         this.ObservablesService

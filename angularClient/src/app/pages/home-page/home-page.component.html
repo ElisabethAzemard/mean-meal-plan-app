@@ -1,10 +1,12 @@
+<div class="wrap">
 <section class="section" *ngIf="registered">
     <app-login-form (formSubmit)="loginUser($event)"
-        (notRegistered)="displayRegistrationForm()"></app-login-form>
+    (notRegistered)="displayRegistrationForm()"></app-login-form>
 </section>
 
 <section *ngIf="!registered"
     class="section">
     <app-registration-form (formSubmit)="registerUser($event)"
-            (alreadyRegistered)="displayLoginForm()"></app-registration-form>
+    (alreadyRegistered)="displayLoginForm()"></app-registration-form>
 </section>
+</div>

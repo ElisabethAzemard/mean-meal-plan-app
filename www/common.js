@@ -33,21 +33,12 @@ let CrudService = class CrudService {
             // return header
             return { headers: myHeader };
         };
-        // CRUD: make qty 0 on inventory item
-        // public removeItemFromInventory(endpoint: string, id: string): Promise<any> {
-        //     return this.HttpClient
-        //         .patch(`/api/${endpoint}/${id}`, this.setHeaders())
-        //         .toPromise()
-        //         .then(data => this.getData(endpoint, data))
-        //         .catch(this.handleError);
-        // };
         /* METHODS TO GET API RESPONSES */
         // Get the API response
         this.getData = (endpoint, apiResponse) => {
             // Switch endpoint to set observable value
             switch (endpoint) {
                 case 'shopping-list':
-                    console.log(apiResponse);
                     // Set user info obserrbale value
                     this.ObservablesService.setObservableData('shopping-list', apiResponse.data);
                     // Return data
@@ -56,6 +47,18 @@ let CrudService = class CrudService {
                 case 'inventory':
                     // Set user info obserrbale value
                     this.ObservablesService.setObservableData('inventory', apiResponse.data);
+                    // Return data
+                    return apiResponse.data || {};
+                    break;
+                case 'recipe':
+                    // Set user info obserrbale value
+                    this.ObservablesService.setObservableData('recipes', apiResponse.data);
+                    // Return data
+                    return apiResponse.data || {};
+                    break;
+                case 'meal-plan':
+                    // Set user info obserrbale value
+                    this.ObservablesService.setObservableData('meal-plan', apiResponse.data);
                     // Return data
                     return apiResponse.data || {};
                     break;
@@ -78,14 +81,6 @@ let CrudService = class CrudService {
             .catch(this.handleError);
     }
     ;
-    //CRUD method: read one item
-    // public findOneItem(endpoint: String, name: String): Promise<any> {
-    //     return this.HttpClient
-    //         .get(`/api/${endpoint}/name/${name}`)
-    //         .toPromise()
-    //         .then(data => this.getData(endpoint, data))
-    //         .catch(this.handleError);
-    // };
     // CRUD method: get collection
     readAllItems(endpoint) {
         return this.HttpClient
@@ -112,6 +107,14 @@ let CrudService = class CrudService {
             .then(data => this.getData('shopping-list', data))
             .catch(this.handleError);
     }
+    // CRUD: get collection of shopping list items
+    getMealPlanRecipes() {
+        return this.HttpClient
+            .get("/api/recipe?planned=true")
+            .toPromise()
+            .then(data => this.getData('meal-plan', data))
+            .catch(this.handleError);
+    }
     // CRUD: get collection of inventory list items (items that have a qty > 0)
     getItemsInInventory() {
         return this.HttpClient
@@ -120,14 +123,6 @@ let CrudService = class CrudService {
             .then(data => this.getData('inventory', data))
             .catch(this.handleError);
     }
-    // CRUD method: edit an item
-    // public updateItemByName(endpoint: string, name: string, data: any): Promise<any> {
-    //     return this.HttpClient
-    //         .patch(`/api/${endpoint}/name/${name}`, data, this.setHeaders())
-    //         .toPromise()
-    //         .then(data => this.getData(endpoint, data))
-    //         .catch(this.handleError);
-    // }
     // CRUD: add or remove element from/to shopping list
     toggleItemInShoppingList(endpoint, name, data) {
         return this.HttpClient
@@ -136,14 +131,6 @@ let CrudService = class CrudService {
             .then(data => this.getData(endpoint, data))
             .catch(this.handleError);
     }
-    // CRUD method: edit an item
-    // public updateItem(endpoint: string, id: string, data: any): Promise<any> {
-    //     return this.HttpClient
-    //         .patch(`/api/${endpoint}/${id}`, data, this.setHeaders())
-    //         .toPromise()
-    //         .then(data => this.getData(endpoint, data))
-    //         .catch(this.handleError);
-    // };
     // CRUD method: delete an item
     deleteItem(endpoint, id) {
         return this.HttpClient
@@ -159,6 +146,24 @@ let CrudService = class CrudService {
             .patch(`/api/${endpoint}/${id}?quantity=${incrementQty}`, data, this.setHeaders())
             .toPromise()
             .then(data => this.getData(endpoint, data))
+            .catch(this.handleError);
+    }
+    ;
+    // CRUD: add recipe to meal plan
+    addRecipeToMealPlan(id) {
+        return this.HttpClient
+            .patch(`/api/recipe/${id}`, { planned: true }, this.setHeaders())
+            .toPromise()
+            .then(data => this.getData('', data))
+            .catch(this.handleError);
+    }
+    ;
+    // CRUD: add recipe to meal plan
+    removeRecipeFromMealPlan(id) {
+        return this.HttpClient
+            .patch(`/api/recipe/${id}`, { planned: false }, this.setHeaders())
+            .toPromise()
+            .then(data => this.getData('', data))
             .catch(this.handleError);
     }
     ;

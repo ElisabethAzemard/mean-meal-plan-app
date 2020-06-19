@@ -21,10 +21,15 @@ export class BarcodeScannerComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.scannerEnabled = false;
   }
 
   scanSuccessHandler(barcode) {
     this.barcodeValue = barcode;
+    this.scannerEnabled = false;
+  }
+
+  ngOnDestroy(): void {
     this.scannerEnabled = false;
   }
 

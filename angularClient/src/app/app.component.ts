@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
     return new Promise((resolve) => {
       this.AuthService.getUserInfo()
         .then((apiResponse) => {
-          console.log(apiResponse)
           if (apiResponse.message === 'Identity found') {
             return resolve(this.Router.navigateByUrl('/shopping-list'));
           }

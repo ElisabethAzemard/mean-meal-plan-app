@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<section class=\"section\">\n    <h2>Inventory</h2>\n    <ul *ngFor=\"let hereitem of items\"\n        class=\"block-list is-small\">\n        <app-single-inventory-item\n            [item]=\"hereitem\"\n            (removeItemFromInventory)=\"removeItemFromInventory($event)\"\n            (incrementQty)=\"incrementQty($event)\"\n            (decrementQty)=\"decrementQty($event)\"></app-single-inventory-item>\n    </ul>\n</section>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<section class=\"section\">\n    <h2 class=\"title is-4 has-text-centered\">Inventaire</h2>\n    <ul *ngFor=\"let item of items\"\n        class=\"block-list is-small\">\n        <app-single-inventory-item\n            [item]=\"item\"\n            (removeItemFromInventory)=\"removeItemFromInventory($event)\"\n            (incrementQty)=\"incrementQty($event)\"\n            (decrementQty)=\"decrementQty($event)\"></app-single-inventory-item>\n    </ul>\n</section>\n<section class=\"section\" *ngIf=\"items.length == 0\">\n    <p>Une petite souris est encore passée par là...</p>\n</section>\n");
 
 /***/ }),
 
@@ -49,8 +49,7 @@ let InventoryComponent = class InventoryComponent {
         this.CrudService = CrudService;
         this.ObservablesService = ObservablesService;
         this.removeItemFromInventory = (removedItem) => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            console.log('removing from invent.');
-            if (removedItem.essential === true && removedItem.quantity === 1) {
+            if (removedItem.essential === true) {
                 yield this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": true }, 0); // true = increment & false = decrement
             }
             else {
@@ -60,7 +59,6 @@ let InventoryComponent = class InventoryComponent {
             this.getInventoryList();
         });
         this.decrementQty = (removedItem) => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            console.log('decrementing');
             // get item object. If it is essential, add to shopping list on last element removed from inventory
             if (removedItem.essential === true && removedItem.quantity === 1) {
                 yield this.CrudService.adjustItemInventoryQuantity('item', removedItem._id, { "toBuy": true }, '-1'); // true = increment & false = decrement
@@ -72,7 +70,6 @@ let InventoryComponent = class InventoryComponent {
             this.getInventoryList();
         });
         this.incrementQty = (addedItemId) => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            console.log('incrementing');
             yield this.CrudService.adjustItemInventoryQuantity('item', addedItemId, null, 1); // true = increment & false = decrement
             // update inventory state
             this.getInventoryList();

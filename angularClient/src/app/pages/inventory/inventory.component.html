@@ -1,11 +1,14 @@
 <section class="section">
-    <h2 class="title has-text-centered">Inventaire</h2>
-    <ul *ngFor="let hereitem of items"
+    <h2 class="title is-4 has-text-centered">Inventaire</h2>
+    <ul *ngFor="let item of items"
         class="block-list is-small">
         <app-single-inventory-item
-            [item]="hereitem"
+            [item]="item"
             (removeItemFromInventory)="removeItemFromInventory($event)"
             (incrementQty)="incrementQty($event)"
             (decrementQty)="decrementQty($event)"></app-single-inventory-item>
     </ul>
+</section>
+<section class="section" *ngIf="items.length == 0">
+    <p>Une petite souris est encore passée par là...</p>
 </section>

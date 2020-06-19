@@ -6,6 +6,8 @@ import { UserInterfaceModule } from '../../shared/user-interface/user-interface.
 
 import { AppFormModule } from "../../shared/form-module/form-module";
 import { MealPlanComponent } from './meal-plan.component';
+import { CrudService } from 'src/app/services/crud/crud.service';
+import { CommonModule } from '@angular/common';
 
 
 // ce fichier permet d’ajouter des composants spécifiques à la page et de rendre disponible le fichier de routing de la page dans le fichier de routing général de l’application
@@ -13,7 +15,8 @@ import { MealPlanComponent } from './meal-plan.component';
 /* DEFINITION */
 @NgModule({
     declarations: [ MealPlanComponent ],
-    imports: [ ComponentRouter, UserInterfaceModule, AppFormModule ]
+    imports: [CommonModule, ComponentRouter, UserInterfaceModule, AppFormModule],
+    providers: [CrudService]
 })
 
 

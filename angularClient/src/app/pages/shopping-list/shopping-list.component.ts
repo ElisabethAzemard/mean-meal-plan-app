@@ -33,8 +33,6 @@ export class ShoppingListComponent implements OnInit {
     }
 
     public addItemToInventory = async (addedItemId) => {
-        console.log('adding item to inventory');
-        console.log(addedItemId);
         // toggle toBuy status & remove 1
         await this.CrudService.adjustItemInventoryQuantity('item', addedItemId, { "toBuy": false }, 1); // true = increment & false = decrement
 
@@ -50,7 +48,6 @@ export class ShoppingListComponent implements OnInit {
 
     public getShoppingList = async () => {
         this.items = await this.CrudService.getItemsOnShoppingList();
-        console.log('heres items', this.items);
     }
 
     ngOnInit() {

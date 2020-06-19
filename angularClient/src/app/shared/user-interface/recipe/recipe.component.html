@@ -1,0 +1,42 @@
+<div class="card">
+    <header class="card-header">
+        <h3 class="card-header-title">
+            {{ recipe.name | uppercase }}
+        </h3>
+        <a href="#"
+            class="card-header-icon"
+            aria-label="more options">
+            <span class="icon">
+                <!-- <i class="fas fa-angle-down"
+                    aria-hidden="true"></i> -->
+            </span>
+        </a>
+    </header>
+    <div class="card-content">
+        <div class="content">
+            <p>Ingrédients: {{ recipe.ingredients }}</p>
+            <p>Étapes: {{ recipe.steps }}</p>
+            <div class="message is-warning">
+                <div class="message-body">
+                    {{ recipe.notes }}
+                </div>
+            </div>
+            <p><span class="tag is-small is-primary is-light is-outlined">{{ recipe.tags }}</span></p>
+        </div>
+    </div>
+    <footer class="card-footer">
+        <button *ngIf="recipe.new"
+            class="card-footer-item button is-primary">Je valide !</button>
+        <button *ngIf="!recipe.new"
+            class="card-footer-item button is-secondary" disabled>Validée !</button>
+        <button
+            class="card-footer-item button is-primary"
+            id="addToMealPlanButton"
+            (click)="addRecipeToMealPlan.emit(recipe._id); disableButton();"
+            *ngIf="!recipe.planned">Mettre au menu</button>
+        <button
+            class="card-footer-item button is-primary"
+            disabled
+            *ngIf="recipe.planned">Déjà au menu</button>
+    </footer>
+</div>

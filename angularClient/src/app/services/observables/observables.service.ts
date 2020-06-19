@@ -15,6 +15,8 @@ export class ObservablesService {
     protected user: BehaviorSubject<any> = new BehaviorSubject<any>(localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null);
     protected shoppingList: BehaviorSubject<any> = new BehaviorSubject<any>(localStorage.getItem('shopping-list') ? JSON.parse(localStorage.getItem('shopping-list')) : null);
     protected inventory: BehaviorSubject<any> = new BehaviorSubject<any>(localStorage.getItem('inventory') ? JSON.parse(localStorage.getItem('inventory')) : null);
+    protected recipes: BehaviorSubject<any> = new BehaviorSubject<any>(localStorage.getItem('recipes') ? JSON.parse(localStorage.getItem('recipes')) : null);
+    protected mealPlan: BehaviorSubject<any> = new BehaviorSubject<any>(localStorage.getItem('meal-plan') ? JSON.parse(localStorage.getItem('meal-plan')) : null);
 
 
     // update any Observable subject value from outside the service
@@ -30,6 +32,14 @@ export class ObservablesService {
 
             case 'inventory':
                 this.inventory.next(data);
+                break;
+
+            case 'recipes':
+                this.recipes.next(data);
+                break;
+
+            case 'meal-plan':
+                this.mealPlan.next(data);
                 break;
 
             default:
@@ -56,6 +66,14 @@ export class ObservablesService {
                 break;
             case 'inventory':
                 return this.inventory;
+                break;
+
+            case 'recipes':
+                return this.recipes;
+                break;
+
+            case 'meal-plan':
+                return this.mealPlan;
                 break;
             default:
                 break;

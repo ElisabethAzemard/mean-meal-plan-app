@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>recipes works!</p>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<section class=\"section\">\n    <h2 class=\"title is-4 has-text-centered\">Trouvez de l'inspi(rat)ion !</h2>\n    <ul *ngFor=\"let recipe of recipes\"\n        class=\"block-list is-small\">\n        <app-recipe [recipe]=\"recipe\"\n            (addRecipeToMealPlan)=\"addRecipeToMealPlan($event)\"></app-recipe>\n    </ul>\n</section>\n");
 
 /***/ }),
 
@@ -38,13 +38,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RecipesComponent", function() { return RecipesComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_observables_observables_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/observables/observables.service */ "./src/app/services/observables/observables.service.ts");
+/* harmony import */ var _services_crud_crud_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/crud/crud.service */ "./src/app/services/crud/crud.service.ts");
+
+
 
 
 let RecipesComponent = class RecipesComponent {
-    constructor() { }
+    constructor(ObservablesService, CrudService) {
+        this.ObservablesService = ObservablesService;
+        this.CrudService = CrudService;
+        this.addRecipeToMealPlan = (recipeId) => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            console.log('adding recipe to meal plan');
+            yield this.CrudService.addRecipeToMealPlan(recipeId);
+            // update current state
+            this.getRecipesList();
+        });
+        this.getRecipesList = () => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            // @TODO : only get recipes that match what's in the inventory
+            this.recipes = yield this.CrudService.readAllItems('recipe');
+        });
+        // get shopping list data from observer
+        this.ObservablesService
+            .getObservableData('recipes')
+            .subscribe(observerRecipesData => { this.recipes = observerRecipesData; });
+    }
     ngOnInit() {
+        // get list from API on first load
+        this.getRecipesList();
     }
 };
+RecipesComponent.ctorParameters = () => [
+    { type: _services_observables_observables_service__WEBPACK_IMPORTED_MODULE_2__["ObservablesService"] },
+    { type: _services_crud_crud_service__WEBPACK_IMPORTED_MODULE_3__["CrudService"] }
+];
 RecipesComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-recipes',
@@ -70,11 +97,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _recipes_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./recipes.router */ "./src/app/pages/recipes/recipes.router.ts");
-/* harmony import */ var _shared_user_interface_user_interface_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/user-interface/user-interface.module */ "./src/app/shared/user-interface/user-interface.module.ts");
-/* harmony import */ var _shared_form_module_form_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared/form-module/form-module */ "./src/app/shared/form-module/form-module.ts");
-/* harmony import */ var _recipes_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./recipes.component */ "./src/app/pages/recipes/recipes.component.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _shared_user_interface_user_interface_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared/user-interface/user-interface.module */ "./src/app/shared/user-interface/user-interface.module.ts");
+/* harmony import */ var src_app_services_crud_crud_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/crud/crud.service */ "./src/app/services/crud/crud.service.ts");
+/* harmony import */ var _shared_form_module_form_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../shared/form-module/form-module */ "./src/app/shared/form-module/form-module.ts");
+/* harmony import */ var _recipes_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./recipes.component */ "./src/app/pages/recipes/recipes.component.ts");
 
 /* IMPORTS */
+
+
 
 
 
@@ -88,8 +119,9 @@ class RecipesModule {
 };
 RecipesModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        declarations: [_recipes_component__WEBPACK_IMPORTED_MODULE_5__["RecipesComponent"]],
-        imports: [_recipes_router__WEBPACK_IMPORTED_MODULE_2__["ComponentRouter"], _shared_user_interface_user_interface_module__WEBPACK_IMPORTED_MODULE_3__["UserInterfaceModule"], _shared_form_module_form_module__WEBPACK_IMPORTED_MODULE_4__["AppFormModule"]]
+        declarations: [_recipes_component__WEBPACK_IMPORTED_MODULE_7__["RecipesComponent"]],
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"], _recipes_router__WEBPACK_IMPORTED_MODULE_2__["ComponentRouter"], _shared_user_interface_user_interface_module__WEBPACK_IMPORTED_MODULE_4__["UserInterfaceModule"], _shared_form_module_form_module__WEBPACK_IMPORTED_MODULE_6__["AppFormModule"]],
+        providers: [src_app_services_crud_crud_service__WEBPACK_IMPORTED_MODULE_5__["CrudService"]]
     })
     /* EXPORT */
 ], RecipesModule);

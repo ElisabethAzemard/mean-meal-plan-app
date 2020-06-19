@@ -1,1 +1,8 @@
-<p>recipes works!</p>
+<section class="section">
+    <h2 class="title is-4 has-text-centered">Trouvez de l'inspi(rat)ion !</h2>
+    <ul *ngFor="let recipe of recipes"
+        class="block-list is-small">
+        <app-recipe [recipe]="recipe"
+            (addRecipeToMealPlan)="addRecipeToMealPlan($event)"></app-recipe>
+    </ul>
+</section>

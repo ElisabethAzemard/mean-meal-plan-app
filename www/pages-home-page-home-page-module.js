@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<section class=\"section\">\n    <app-login-form (formSubmit)=\"loginUser($event)\"\n        (notRegistered)=\"displayRegistrationForm()\"></app-login-form>\n</section>\n\n<section *ngIf=\"!registered\"\n    class=\"section\">\n    <app-registration-form (formSubmit)=\"registerUser($event)\"></app-registration-form>\n</section>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"wrap\">\n<section class=\"section\" *ngIf=\"registered\">\n    <app-login-form (formSubmit)=\"loginUser($event)\"\n    (notRegistered)=\"displayRegistrationForm()\"></app-login-form>\n</section>\n\n<section *ngIf=\"!registered\"\n    class=\"section\">\n    <app-registration-form (formSubmit)=\"registerUser($event)\"\n    (alreadyRegistered)=\"displayLoginForm()\"></app-registration-form>\n</section>\n</div>\n");
 
 /***/ }),
 
@@ -64,11 +64,14 @@ class HomePageComponent {
         this.displayRegistrationForm = () => {
             this.registered = false;
         };
+        // display login form when click on "already registered?"
+        this.displayLoginForm = () => {
+            this.registered = true;
+        };
         // register user
         this.registerUser = (user) => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             // send registration form to auth API
             const userInfo = yield this.AuthService.registerUser(user);
-            console.log(userInfo);
             //if user registration is successful, redirect to /news
             if (userInfo) {
                 this.Router.navigateByUrl('/shopping-list');

@@ -15,7 +15,13 @@ const MandatoryFields = {
         'name',
         'ingredients',
         'steps',
-        'timing'
+        'timing',
+        "notes",
+        "tags",
+        "new",
+        "starchy",
+        "planned",
+        "author"
     ],
     identity: [
         'email',

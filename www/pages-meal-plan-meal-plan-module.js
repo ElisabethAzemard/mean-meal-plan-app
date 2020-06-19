@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>meal-plan works!</p>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<section class=\"section\">\n    <h2 class=\"title is-4 has-text-centered\">Les recettes de la semaine</h2>\n    <ul *ngFor=\"let recipe of recipes\"\n        class=\"block-list is-small\">\n        <app-meal-plan-recipe\n                [recipe]=\"recipe\"\n                (removeRecipeFromMealPlan)=\"removeRecipeFromMealPlan($event)\"></app-meal-plan-recipe>\n    </ul>\n</section>\n");
 
 /***/ }),
 
@@ -38,13 +38,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MealPlanComponent", function() { return MealPlanComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_crud_crud_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/crud/crud.service */ "./src/app/services/crud/crud.service.ts");
+/* harmony import */ var _services_observables_observables_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/observables/observables.service */ "./src/app/services/observables/observables.service.ts");
+
+/* IMPORTS */
 
 
+
+/* DEFINITION & EXPORT */
 let MealPlanComponent = class MealPlanComponent {
-    constructor() { }
+    constructor(CrudService, ObservablesService) {
+        this.CrudService = CrudService;
+        this.ObservablesService = ObservablesService;
+        this.removeRecipeFromMealPlan = (recipeId) => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            yield this.CrudService.removeRecipeFromMealPlan(recipeId);
+            yield this.getMealPlanRecipes();
+        });
+        this.getMealPlanRecipes = () => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            this.recipes = yield this.CrudService.getMealPlanRecipes();
+        });
+        // get shopping list data from observer
+        this.ObservablesService
+            .getObservableData('meal-plan')
+            .subscribe(observerRecipesData => { this.recipes = observerRecipesData; });
+    }
     ngOnInit() {
+        // get meal plan recipes on first load
+        this.getMealPlanRecipes();
     }
 };
+MealPlanComponent.ctorParameters = () => [
+    { type: _services_crud_crud_service__WEBPACK_IMPORTED_MODULE_2__["CrudService"] },
+    { type: _services_observables_observables_service__WEBPACK_IMPORTED_MODULE_3__["ObservablesService"] }
+];
 MealPlanComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-meal-plan',
@@ -73,8 +99,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_user_interface_user_interface_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/user-interface/user-interface.module */ "./src/app/shared/user-interface/user-interface.module.ts");
 /* harmony import */ var _shared_form_module_form_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared/form-module/form-module */ "./src/app/shared/form-module/form-module.ts");
 /* harmony import */ var _meal_plan_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./meal-plan.component */ "./src/app/pages/meal-plan/meal-plan.component.ts");
+/* harmony import */ var src_app_services_crud_crud_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/services/crud/crud.service */ "./src/app/services/crud/crud.service.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
 
 /* IMPORTS */
+
+
 
 
 
@@ -89,7 +119,8 @@ class MealPlanModule {
 MealPlanModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         declarations: [_meal_plan_component__WEBPACK_IMPORTED_MODULE_5__["MealPlanComponent"]],
-        imports: [_meal_plan_router__WEBPACK_IMPORTED_MODULE_2__["ComponentRouter"], _shared_user_interface_user_interface_module__WEBPACK_IMPORTED_MODULE_3__["UserInterfaceModule"], _shared_form_module_form_module__WEBPACK_IMPORTED_MODULE_4__["AppFormModule"]]
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_7__["CommonModule"], _meal_plan_router__WEBPACK_IMPORTED_MODULE_2__["ComponentRouter"], _shared_user_interface_user_interface_module__WEBPACK_IMPORTED_MODULE_3__["UserInterfaceModule"], _shared_form_module_form_module__WEBPACK_IMPORTED_MODULE_4__["AppFormModule"]],
+        providers: [src_app_services_crud_crud_service__WEBPACK_IMPORTED_MODULE_6__["CrudService"]]
     })
     /* EXPORT */
 ], MealPlanModule);

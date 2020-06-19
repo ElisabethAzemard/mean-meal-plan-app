@@ -10,7 +10,8 @@ $red: hsl(352%, 76%, 43%); // red
 
 $custom-colors: (
     'primary-light': $ming-light,
-    'dark-lighter': $gunmetal
+    'dark-lighter': $gunmetal,
+    'secondary': '#f6c3b4',
 );
 
 // redefine some of Bulma's colors
@@ -19,8 +20,8 @@ $grey-dark: $gunmetal;
 $grey-darker: $dark-gunmetal;
 
 // theme colors
-$primary: #000;
-$secondary: #f6c3b4;
+$primary: #01427e;
+$secondary: #7ba8bb;
 $link: $ming-dark;
 $danger: $red;
 
@@ -84,7 +85,7 @@ $family-sans-serif: "Nunito", sans-serif;
 }
 
 // footer
-footer {
+footer#appFooter {
     width: 100%;
     padding: .2rem;
     position: absolute;

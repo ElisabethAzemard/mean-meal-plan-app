@@ -35,15 +35,6 @@ export class CrudService {
             .catch(this.handleError);
     };
 
-    //CRUD method: read one item
-    // public findOneItem(endpoint: String, name: String): Promise<any> {
-    //     return this.HttpClient
-    //         .get(`/api/${endpoint}/name/${name}`)
-    //         .toPromise()
-    //         .then(data => this.getData(endpoint, data))
-    //         .catch(this.handleError);
-    // };
-
     // CRUD method: get collection
     public readAllItems(endpoint: string): Promise<any> {
         return this.HttpClient
@@ -72,6 +63,15 @@ export class CrudService {
             .catch(this.handleError);
     }
 
+    // CRUD: get collection of shopping list items
+    public getMealPlanRecipes(): Promise<any> {
+        return this.HttpClient
+            .get("/api/recipe?planned=true")
+            .toPromise()
+            .then(data => this.getData('meal-plan', data))
+            .catch(this.handleError);
+    }
+
     // CRUD: get collection of inventory list items (items that have a qty > 0)
     public getItemsInInventory(): Promise<any> {
         return this.HttpClient
@@ -81,15 +81,6 @@ export class CrudService {
             .catch(this.handleError);
     }
 
-    // CRUD method: edit an item
-    // public updateItemByName(endpoint: string, name: string, data: any): Promise<any> {
-    //     return this.HttpClient
-    //         .patch(`/api/${endpoint}/name/${name}`, data, this.setHeaders())
-    //         .toPromise()
-    //         .then(data => this.getData(endpoint, data))
-    //         .catch(this.handleError);
-    // }
-
     // CRUD: add or remove element from/to shopping list
     public toggleItemInShoppingList(endpoint: string, name: string, data: any): Promise<any> {
         return this.HttpClient
@@ -98,15 +89,6 @@ export class CrudService {
             .then(data => this.getData(endpoint, data))
             .catch(this.handleError);
     }
-
-    // CRUD method: edit an item
-    // public updateItem(endpoint: string, id: string, data: any): Promise<any> {
-    //     return this.HttpClient
-    //         .patch(`/api/${endpoint}/${id}`, data, this.setHeaders())
-    //         .toPromise()
-    //         .then(data => this.getData(endpoint, data))
-    //         .catch(this.handleError);
-    // };
 
     // CRUD method: delete an item
     public deleteItem(endpoint: string, id: string): Promise<any> {
@@ -126,14 +108,23 @@ export class CrudService {
             .catch(this.handleError);
     };
 
-    // CRUD: make qty 0 on inventory item
-    // public removeItemFromInventory(endpoint: string, id: string): Promise<any> {
-    //     return this.HttpClient
-    //         .patch(`/api/${endpoint}/${id}`, this.setHeaders())
-    //         .toPromise()
-    //         .then(data => this.getData(endpoint, data))
-    //         .catch(this.handleError);
-    // };
+    // CRUD: add recipe to meal plan
+    public addRecipeToMealPlan(id: string): Promise<any> {
+        return this.HttpClient
+            .patch(`/api/recipe/${id}`, { planned: true}, this.setHeaders())
+            .toPromise()
+            .then(data => this.getData('', data))
+            .catch(this.handleError);
+    };
+
+    // CRUD: add recipe to meal plan
+    public removeRecipeFromMealPlan(id: string): Promise<any> {
+        return this.HttpClient
+            .patch(`/api/recipe/${id}`, { planned: false}, this.setHeaders())
+            .toPromise()
+            .then(data => this.getData('', data))
+            .catch(this.handleError);
+    };
 
     /* METHODS TO GET API RESPONSES */
     // Get the API response
@@ -141,7 +132,6 @@ export class CrudService {
         // Switch endpoint to set observable value
         switch (endpoint) {
             case 'shopping-list':
-                console.log(apiResponse);
                 // Set user info obserrbale value
                 this.ObservablesService.setObservableData('shopping-list', apiResponse.data);
 
@@ -153,6 +143,20 @@ export class CrudService {
                 // Set user info obserrbale value
                 this.ObservablesService.setObservableData('inventory', apiResponse.data);
 
+                // Return data
+                return apiResponse.data || {};
+                break;
+
+            case 'recipe':
+                // Set user info obserrbale value
+                this.ObservablesService.setObservableData('recipes', apiResponse.data);
+                // Return data
+                return apiResponse.data || {};
+                break;
+
+            case 'meal-plan':
+                // Set user info obserrbale value
+                this.ObservablesService.setObservableData('meal-plan', apiResponse.data);
                 // Return data
                 return apiResponse.data || {};
                 break;

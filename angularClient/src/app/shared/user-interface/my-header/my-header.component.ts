@@ -40,7 +40,6 @@ export class MyHeaderComponent implements OnInit {
         // log in user in Api
         const userInfo = await this.AuthService.logOutUser();
 
-        console.log(userInfo);
         // if logout is successful, redirect to home
         if (userInfo.data === "User logged out.") {
             this.Router.navigateByUrl('/');
@@ -49,6 +48,8 @@ export class MyHeaderComponent implements OnInit {
         this.ObservablesService.setObservableData('user', null);
         this.ObservablesService.setObservableData('shopping-list', null);
         this.ObservablesService.setObservableData('inventory', null);
+        this.ObservablesService.setObservableData('recipes', null);
+        this.ObservablesService.setObservableData('meal-plan', null);
 
     };
 

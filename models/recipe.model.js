@@ -7,14 +7,14 @@ const MongooseSchema = new Schema({
     name: String,
     ingredients: [String],
     steps: [String],
-    notes: [Schema.Types.ObjectId],
+    notes: [String],
     timing: Number, // preparation timing in minutes
     tags: [String],
     new: Boolean, // already tested?
     starchy: Boolean, // suitable for dinner?
     planned: Boolean, // has the recipe been picked for the week's meal plan?
-    author: [Schema.Types.ObjectId],
+    author: [String],
 });
 
 // EXPORT
-module.exports = mongoose.model('recipe', MongooseSchema, 'recipes');
+module.exports = mongoose.model('recipe', MongooseSchema, 'recipe');

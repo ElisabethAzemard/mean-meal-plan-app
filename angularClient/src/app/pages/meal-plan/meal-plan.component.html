@@ -1,1 +1,9 @@
-<p>meal-plan works!</p>
+<section class="section">
+    <h2 class="title is-4 has-text-centered">Les recettes de la semaine</h2>
+    <ul *ngFor="let recipe of recipes"
+        class="block-list is-small">
+        <app-meal-plan-recipe
+                [recipe]="recipe"
+                (removeRecipeFromMealPlan)="removeRecipeFromMealPlan($event)"></app-meal-plan-recipe>
+    </ul>
+</section>

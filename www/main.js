@@ -27,11 +27,13 @@ var map = {
 	"./pages/meal-plan/meal-plan.module": [
 		"./src/app/pages/meal-plan/meal-plan.module.ts",
 		"default~pages-barcode-scanner-barcode-scanner-module~pages-home-page-home-page-module~pages-inventor~9472ef19",
+		"common",
 		"pages-meal-plan-meal-plan-module"
 	],
 	"./pages/recipes/recipes.module": [
 		"./src/app/pages/recipes/recipes.module.ts",
 		"default~pages-barcode-scanner-barcode-scanner-module~pages-home-page-home-page-module~pages-inventor~9472ef19",
+		"common",
 		"pages-recipes-recipes-module"
 	],
 	"./pages/shopping-list/shopping-list.module": [
@@ -72,7 +74,33 @@ module.exports = webpackAsyncContext;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!-- Use the my-header.component.ts -->\n<app-my-header [path]=\"'/'\"\n  [title]=\"'Welcome to the home page'\"></app-my-header>\n<router-outlet></router-outlet>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- Use the my-header.component.ts -->\n<app-my-header [path]=\"'/'\"\n  [title]=\"'Welcome to the home page'\"></app-my-header>\n<router-outlet></router-outlet>\n<app-footer></app-footer>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/shared/user-interface/footer/footer.component.html":
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/shared/user-interface/footer/footer.component.html ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<footer *ngIf=\"userData\" id=\"appFooter\">\n    <div class=\"level is-centered is-mobile\">\n        <div class=\"level-item\">\n            <a [routerLink]=\"'/shopping-list'\"\n                class=\"\">\n                <span class=\"icon is-small\">\n                    <fa-icon [icon]=\"faShoppingBasket\"\n                        aria-role=\"button\"></fa-icon>\n                </span>\n            </a>\n        </div>\n        <div class=\"level-item\">\n            <a [routerLink]=\"'/inventory'\"\n                class=\"\">\n                <span class=\"icon is-small\">\n                    <fa-icon [icon]=\"faList\"\n                        aria-role=\"button\"></fa-icon>\n                </span>\n            </a>\n        </div>\n        <div class=\"level-item\">\n            <a [routerLink]=\"'/barcode-scanner'\"\n                class=\"\">\n                <span class=\"icon is-large\">\n                    <fa-icon [icon]=\"faBarcode\"\n                        aria-role=\"button\" size=\"3x\"></fa-icon>\n                </span>\n            </a>\n        </div>\n        <div class=\"level-item\">\n            <a [routerLink]=\"'/recipes'\"\n                class=\"\">\n                <span class=\"icon is-small\">\n                    <fa-icon [icon]=\"faQuestion\"\n                        aria-role=\"button\"></fa-icon>\n                </span>\n            </a>\n        </div>\n        <div class=\"level-item\">\n            <a [routerLink]=\"'/meal-plan'\"\n                class=\"\">\n                <span class=\"icon is-small\">\n                    <fa-icon [icon]=\"faCalendarWeek\"\n                        aria-role=\"button\"></fa-icon>\n                </span>\n            </a>\n        </div>\n    </div>\n</footer>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/shared/user-interface/meal-plan-recipe/meal-plan-recipe.component.html":
+/*!******************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/shared/user-interface/meal-plan-recipe/meal-plan-recipe.component.html ***!
+  \******************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\n    <header class=\"card-header\">\n        <h3 class=\"card-header-title\">\n            {{ recipe.name | uppercase }}\n        </h3>\n        <a href=\"#\"\n            class=\"card-header-icon\"\n            aria-label=\"more options\">\n            <span class=\"icon\">\n                <!-- <i class=\"fas fa-angle-down\"\n                    aria-hidden=\"true\"></i> -->\n            </span>\n        </a>\n    </header>\n    <div class=\"card-content\">\n        <div class=\"content\">\n            <p>Ingrédients: {{ recipe.ingredients }}</p>\n            <p>Étapes: {{ recipe.steps }}</p>\n            <div class=\"message is-warning\">\n                <div class=\"message-body\">\n                    {{ recipe.notes }}\n                </div>\n            </div>\n            <p><span class=\"tag is-small is-primary is-light is-outlined\">{{ recipe.tags }}</span></p>\n        </div>\n    </div>\n    <footer class=\"card-footer\">\n        <button *ngIf=\"recipe.new\" href=\"\"\n            class=\"card-footer-item button is-primary\">Je valide !</button>\n        <button *ngIf=\"!recipe.new\"\n            class=\"card-footer-item button is-secondary\" disabled>Validée !</button>\n        <button class=\"card-footer-item button is-primary\"\n            (click)=\"removeRecipeFromMealPlan.emit(recipe._id)\">Retirer du menu</button>\n    </footer>\n</div>\n");
 
 /***/ }),
 
@@ -85,7 +113,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<header>\n    <nav class=\"navbar is-primary\">\n        <div class=\"navbar-brand\">\n            <img src=\"assets/img/logo.png\"\n                alt=\"logo\"\n                id=\"logoImage\">\n            <h1 class=\"title is-3 has-text-white\">Remy</h1>\n            <a role=\"button\"\n                class=\"navbar-burger\"\n                aria-label=\"menu\"\n                aria-expanded=\"false\">\n                <span aria-hidden=\"true\"></span>\n                <span aria-hidden=\"true\"></span>\n                <span aria-hidden=\"true\"></span>\n            </a>\n        </div>\n        <div class=\"navbar-menu\">\n            <div class=\"navbar-start\">\n                <a *ngIf=\"!userData\"\n                    [routerLink]=\"'/'\"\n                    class=\"navbar-item\">Home</a>\n                <a *ngIf=\"userData\"\n                    [routerLink]=\"'/shopping-list'\"\n                    class=\"navbar-item\">Liste de courses</a>\n                <a *ngIf=\"userData\"\n                    [routerLink]=\"'/barcode-scanner'\"\n                    class=\"navbar-item\">Scanner</a>\n                <a *ngIf=\"userData\"\n                    [routerLink]=\"'/inventory'\"\n                    class=\"navbar-item\">Inventaire</a>\n                <a *ngIf=\"userData\"\n                    [routerLink]=\"'/recipes'\"\n                    class=\"navbar-item\">Recettes</a>\n                <a *ngIf=\"userData\"\n                    [routerLink]=\"'/meal-plan'\"\n                    class=\"navbar-item\">Planning</a>\n                <a *ngIf=\"userData\"\n                    (click)=\"logout()\"\n                    class=\"navbar-item\">Log out</a>\n            </div>\n        </div>\n    </nav>\n</header>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<header>\n    <nav class=\"navbar is-primary\">\n        <div class=\"navbar-brand\">\n            <img src=\"assets/img/logo.png\"\n                alt=\"logo\"\n                id=\"logoImage\">\n            <h1 class=\"title is-3 has-text-white\">Bon app' !</h1>\n            <a role=\"button\"\n                class=\"navbar-burger\"\n                aria-label=\"menu\"\n                aria-expanded=\"false\">\n                <span aria-hidden=\"true\"></span>\n                <span aria-hidden=\"true\"></span>\n                <span aria-hidden=\"true\"></span>\n            </a>\n        </div>\n        <div class=\"navbar-menu\">\n            <div class=\"navbar-start\">\n                <a *ngIf=\"!userData\"\n                    [routerLink]=\"'/'\"\n                    class=\"navbar-item\">Home</a>\n                <a *ngIf=\"userData\"\n                    (click)=\"logout()\"\n                    class=\"navbar-item\">Log out</a>\n            </div>\n        </div>\n    </nav>\n</header>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/shared/user-interface/recipe/recipe.component.html":
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/shared/user-interface/recipe/recipe.component.html ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\n    <header class=\"card-header\">\n        <h3 class=\"card-header-title\">\n            {{ recipe.name | uppercase }}\n        </h3>\n        <a href=\"#\"\n            class=\"card-header-icon\"\n            aria-label=\"more options\">\n            <span class=\"icon\">\n                <!-- <i class=\"fas fa-angle-down\"\n                    aria-hidden=\"true\"></i> -->\n            </span>\n        </a>\n    </header>\n    <div class=\"card-content\">\n        <div class=\"content\">\n            <p>Ingrédients: {{ recipe.ingredients }}</p>\n            <p>Étapes: {{ recipe.steps }}</p>\n            <div class=\"message is-warning\">\n                <div class=\"message-body\">\n                    {{ recipe.notes }}\n                </div>\n            </div>\n            <p><span class=\"tag is-small is-primary is-light is-outlined\">{{ recipe.tags }}</span></p>\n        </div>\n    </div>\n    <footer class=\"card-footer\">\n        <button *ngIf=\"recipe.new\"\n            class=\"card-footer-item button is-primary\">Je valide !</button>\n        <button *ngIf=\"!recipe.new\"\n            class=\"card-footer-item button is-secondary\" disabled>Validée !</button>\n        <button\n            class=\"card-footer-item button is-primary\"\n            id=\"addToMealPlanButton\"\n            (click)=\"addRecipeToMealPlan.emit(recipe._id); disableButton();\"\n            *ngIf=\"!recipe.planned\">Mettre au menu</button>\n        <button\n            class=\"card-footer-item button is-primary\"\n            disabled\n            *ngIf=\"recipe.planned\">Déjà au menu</button>\n    </footer>\n</div>\n");
 
 /***/ }),
 
@@ -98,7 +139,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<li>\n    <div class=\"field has-addons\">\n        <div class=\"control\" (click)=\"removeItemFromInventory.emit(item)\">\n            <span>\n                <fa-icon\n                    [icon]=\"faTimes\"\n                    aria-role=\"button\"></fa-icon>\n            </span>\n        </div>\n        <div class=\"control\">\n            <p>{{ item.name }}</p>\n        </div>\n        <div class=\"control\">\n            <button (click)=\"decrementQty.emit(item)\" class=\"button is-primary is-small\"><fa-icon [icon]=\"faMinus\"\n                aria-role=\"button\"></fa-icon></button>\n            <span class=\"button is-primary is-small is-outlined\">{{ item.quantity }}</span>\n            <button (click)=\"incrementQty.emit(item._id)\" class=\"button is-primary is-small\"><fa-icon [icon]=\"faPlus\"\n                aria-role=\"button\"></fa-icon></button>\n        </div>\n    </div>\n</li>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<li>\n    <div class=\"level is-mobile\">\n        <div class=\"level-left\">\n            <div class=\"level-item\">\n                <div class=\"control\"\n                    (click)=\"removeItemFromInventory.emit(item)\">\n                    <span class=\"is-primary\">\n                        <fa-icon [icon]=\"faTimes\"\n                            aria-role=\"button\"></fa-icon>\n                    </span>\n                </div>\n            </div>\n            <div class=\"level-item\">\n                <div class=\"control level-item\">\n                    <p>{{ item.name }}</p>\n                </div>\n            </div>\n        </div>\n        <div class=\"level-right\">\n            <div class=\"level-item field has-addons\">\n                    <button (click)=\"decrementQty.emit(item)\"\n                        class=\"button is-primary is-small\">\n                        <fa-icon [icon]=\"faMinus\"\n                            aria-role=\"button\"></fa-icon>\n                    </button>\n                    <span class=\"button is-primary is-small is-outlined\">{{ item.quantity }}</span>\n                    <button (click)=\"incrementQty.emit(item._id)\"\n                        class=\"button is-primary is-small\">\n                        <fa-icon [icon]=\"faPlus\"\n                            aria-role=\"button\"></fa-icon>\n                    </button>\n            </div>\n        </div>\n    </div>\n</li>\n");
 
 /***/ }),
 
@@ -449,7 +490,7 @@ class AppComponent {
     constructor(AuthService, Router) {
         this.AuthService = AuthService;
         this.Router = Router;
-        this.title = 'Remy';
+        this.title = 'Bon app\'';
     }
     ngOnInit() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
@@ -457,7 +498,6 @@ class AppComponent {
             return new Promise((resolve) => {
                 this.AuthService.getUserInfo()
                     .then((apiResponse) => {
-                    console.log(apiResponse);
                     if (apiResponse.message === 'Identity found') {
                         return resolve(this.Router.navigateByUrl('/shopping-list'));
                     }
@@ -724,6 +764,8 @@ let ObservablesService = class ObservablesService {
         this.user = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null);
         this.shoppingList = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](localStorage.getItem('shopping-list') ? JSON.parse(localStorage.getItem('shopping-list')) : null);
         this.inventory = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](localStorage.getItem('inventory') ? JSON.parse(localStorage.getItem('inventory')) : null);
+        this.recipes = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](localStorage.getItem('recipes') ? JSON.parse(localStorage.getItem('recipes')) : null);
+        this.mealPlan = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](localStorage.getItem('meal-plan') ? JSON.parse(localStorage.getItem('meal-plan')) : null);
         // update any Observable subject value from outside the service
         this.setObservableData = (type, data) => {
             switch (type) {
@@ -735,6 +777,12 @@ let ObservablesService = class ObservablesService {
                     break;
                 case 'inventory':
                     this.inventory.next(data);
+                    break;
+                case 'recipes':
+                    this.recipes.next(data);
+                    break;
+                case 'meal-plan':
+                    this.mealPlan.next(data);
                     break;
                 default:
                     break;
@@ -761,6 +809,12 @@ let ObservablesService = class ObservablesService {
                 case 'inventory':
                     return this.inventory;
                     break;
+                case 'recipes':
+                    return this.recipes;
+                    break;
+                case 'meal-plan':
+                    return this.mealPlan;
+                    break;
                 default:
                     break;
             }
@@ -778,6 +832,132 @@ ObservablesService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/shared/user-interface/footer/footer.component.scss":
+/*!********************************************************************!*\
+  !*** ./src/app/shared/user-interface/footer/footer.component.scss ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NoYXJlZC91c2VyLWludGVyZmFjZS9mb290ZXIvZm9vdGVyLmNvbXBvbmVudC5zY3NzIn0= */");
+
+/***/ }),
+
+/***/ "./src/app/shared/user-interface/footer/footer.component.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/shared/user-interface/footer/footer.component.ts ***!
+  \******************************************************************/
+/*! exports provided: FooterComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FooterComponent", function() { return FooterComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _services_observables_observables_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/observables/observables.service */ "./src/app/services/observables/observables.service.ts");
+/* harmony import */ var _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/auth/auth.service */ "./src/app/services/auth/auth.service.ts");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+
+/* IMPORTS */
+
+
+
+
+
+/* DEFINITION & EXPORT */
+let FooterComponent = class FooterComponent {
+    // DEPENDENCIES INJECTION
+    constructor(Router, ObservablesService, AuthService) {
+        this.Router = Router;
+        this.ObservablesService = ObservablesService;
+        this.AuthService = AuthService;
+        this.faList = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faList"]; // inventaire
+        this.faCalendarWeek = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faCalendarWeek"]; // planning
+        this.faBarcode = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faBarcode"]; // scan
+        this.faQuestion = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faQuestion"]; // recettes
+        this.faShoppingBasket = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faShoppingBasket"]; // courses
+        // get user data observer
+        this.ObservablesService
+            .getObservableData('user')
+            .subscribe(userDataObserver => { this.userData = userDataObserver; });
+    }
+    ngOnInit() {
+    }
+};
+FooterComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+    { type: _services_observables_observables_service__WEBPACK_IMPORTED_MODULE_3__["ObservablesService"] },
+    { type: _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] }
+];
+FooterComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-footer',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./footer.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/shared/user-interface/footer/footer.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./footer.component.scss */ "./src/app/shared/user-interface/footer/footer.component.scss")).default]
+    })
+], FooterComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/shared/user-interface/meal-plan-recipe/meal-plan-recipe.component.scss":
+/*!****************************************************************************************!*\
+  !*** ./src/app/shared/user-interface/meal-plan-recipe/meal-plan-recipe.component.scss ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NoYXJlZC91c2VyLWludGVyZmFjZS9tZWFsLXBsYW4tcmVjaXBlL21lYWwtcGxhbi1yZWNpcGUuY29tcG9uZW50LnNjc3MifQ== */");
+
+/***/ }),
+
+/***/ "./src/app/shared/user-interface/meal-plan-recipe/meal-plan-recipe.component.ts":
+/*!**************************************************************************************!*\
+  !*** ./src/app/shared/user-interface/meal-plan-recipe/meal-plan-recipe.component.ts ***!
+  \**************************************************************************************/
+/*! exports provided: MealPlanRecipeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MealPlanRecipeComponent", function() { return MealPlanRecipeComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let MealPlanRecipeComponent = class MealPlanRecipeComponent {
+    // DEPENDENCIES INJECTION
+    constructor() {
+        this.removeRecipeFromMealPlan = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+    }
+    ngOnInit() {
+    }
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], MealPlanRecipeComponent.prototype, "recipe", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+], MealPlanRecipeComponent.prototype, "removeRecipeFromMealPlan", void 0);
+MealPlanRecipeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-meal-plan-recipe',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./meal-plan-recipe.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/shared/user-interface/meal-plan-recipe/meal-plan-recipe.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./meal-plan-recipe.component.scss */ "./src/app/shared/user-interface/meal-plan-recipe/meal-plan-recipe.component.scss")).default]
+    })
+], MealPlanRecipeComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/shared/user-interface/my-header/my-header.component.scss":
 /*!**************************************************************************!*\
   !*** ./src/app/shared/user-interface/my-header/my-header.component.scss ***!
@@ -787,7 +967,7 @@ ObservablesService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".title {\n  margin-bottom: 0;\n  margin-left: 0.75rem;\n  line-height: 1.6;\n}\n\n.navbar-brand {\n  padding: 1rem 1.5rem;\n}\n\n@media screen and (min-width: 1024px) {\n  .navbar-start.navbar-item {\n    color: #fff;\n  }\n}\n\n#logoImage {\n  width: 50px;\n  height: 50px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9FbGlzYWJldGgvRGVza3RvcC9tZWFsLXBsYW4tYXBwL2FuZ3VsYXJDbGllbnQvc3JjL2FwcC9zaGFyZWQvdXNlci1pbnRlcmZhY2UvbXktaGVhZGVyL215LWhlYWRlci5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvc2hhcmVkL3VzZXItaW50ZXJmYWNlL215LWhlYWRlci9teS1oZWFkZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxnQkFBQTtFQUNBLG9CQUFBO0VBQ0EsZ0JBQUE7QUNDSjs7QURFQTtFQUFnQixvQkFBQTtBQ0VoQjs7QURBQTtFQUNJO0lBQ0ksV0FBQTtFQ0dOO0FBQ0Y7O0FEQUE7RUFDSSxXQUFBO0VBQ0EsWUFBQTtBQ0VKIiwiZmlsZSI6InNyYy9hcHAvc2hhcmVkL3VzZXItaW50ZXJmYWNlL215LWhlYWRlci9teS1oZWFkZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIudGl0bGUge1xuICAgIG1hcmdpbi1ib3R0b206IDA7XG4gICAgbWFyZ2luLWxlZnQ6IC43NXJlbTtcbiAgICBsaW5lLWhlaWdodDogMS42O1xufVxuXG4ubmF2YmFyLWJyYW5kIHsgcGFkZGluZzogMXJlbSAxLjVyZW07IH1cblxuQG1lZGlhIHNjcmVlbiBhbmQgKG1pbi13aWR0aDoxMDI0cHgpe1xuICAgIC5uYXZiYXItc3RhcnQubmF2YmFyLWl0ZW0ge1xuICAgICAgICBjb2xvcjogI2ZmZjtcbiAgICB9XG59XG5cbiNsb2dvSW1hZ2Uge1xuICAgIHdpZHRoOiA1MHB4O1xuICAgIGhlaWdodDogNTBweDtcbn1cbiIsIi50aXRsZSB7XG4gIG1hcmdpbi1ib3R0b206IDA7XG4gIG1hcmdpbi1sZWZ0OiAwLjc1cmVtO1xuICBsaW5lLWhlaWdodDogMS42O1xufVxuXG4ubmF2YmFyLWJyYW5kIHtcbiAgcGFkZGluZzogMXJlbSAxLjVyZW07XG59XG5cbkBtZWRpYSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDEwMjRweCkge1xuICAubmF2YmFyLXN0YXJ0Lm5hdmJhci1pdGVtIHtcbiAgICBjb2xvcjogI2ZmZjtcbiAgfVxufVxuI2xvZ29JbWFnZSB7XG4gIHdpZHRoOiA1MHB4O1xuICBoZWlnaHQ6IDUwcHg7XG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = (".title {\n  margin-bottom: 0;\n  margin-left: 0.75rem;\n  line-height: 1.6;\n}\n\n.navbar-brand {\n  padding: 0.6rem;\n}\n\n@media screen and (min-width: 1024px) {\n  .navbar-start.navbar-item {\n    color: #fff;\n  }\n}\n\n#logoImage {\n  width: 50px;\n  height: 50px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9FbGlzYWJldGgvRGVza3RvcC9tZWFsLXBsYW4tYXBwL2FuZ3VsYXJDbGllbnQvc3JjL2FwcC9zaGFyZWQvdXNlci1pbnRlcmZhY2UvbXktaGVhZGVyL215LWhlYWRlci5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvc2hhcmVkL3VzZXItaW50ZXJmYWNlL215LWhlYWRlci9teS1oZWFkZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxnQkFBQTtFQUNBLG9CQUFBO0VBQ0EsZ0JBQUE7QUNDSjs7QURFQTtFQUFnQixlQUFBO0FDRWhCOztBREFBO0VBQ0k7SUFDSSxXQUFBO0VDR047QUFDRjs7QURBQTtFQUNJLFdBQUE7RUFDQSxZQUFBO0FDRUoiLCJmaWxlIjoic3JjL2FwcC9zaGFyZWQvdXNlci1pbnRlcmZhY2UvbXktaGVhZGVyL215LWhlYWRlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi50aXRsZSB7XG4gICAgbWFyZ2luLWJvdHRvbTogMDtcbiAgICBtYXJnaW4tbGVmdDogLjc1cmVtO1xuICAgIGxpbmUtaGVpZ2h0OiAxLjY7XG59XG5cbi5uYXZiYXItYnJhbmQgeyBwYWRkaW5nOiAuNnJlbTsgfVxuXG5AbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOjEwMjRweCl7XG4gICAgLm5hdmJhci1zdGFydC5uYXZiYXItaXRlbSB7XG4gICAgICAgIGNvbG9yOiAjZmZmO1xuICAgIH1cbn1cblxuI2xvZ29JbWFnZSB7XG4gICAgd2lkdGg6IDUwcHg7XG4gICAgaGVpZ2h0OiA1MHB4O1xufVxuIiwiLnRpdGxlIHtcbiAgbWFyZ2luLWJvdHRvbTogMDtcbiAgbWFyZ2luLWxlZnQ6IDAuNzVyZW07XG4gIGxpbmUtaGVpZ2h0OiAxLjY7XG59XG5cbi5uYXZiYXItYnJhbmQge1xuICBwYWRkaW5nOiAwLjZyZW07XG59XG5cbkBtZWRpYSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDEwMjRweCkge1xuICAubmF2YmFyLXN0YXJ0Lm5hdmJhci1pdGVtIHtcbiAgICBjb2xvcjogI2ZmZjtcbiAgfVxufVxuI2xvZ29JbWFnZSB7XG4gIHdpZHRoOiA1MHB4O1xuICBoZWlnaHQ6IDUwcHg7XG59Il19 */");
 
 /***/ }),
 
@@ -826,7 +1006,6 @@ class MyHeaderComponent {
         this.logout = () => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             // log in user in Api
             const userInfo = yield this.AuthService.logOutUser();
-            console.log(userInfo);
             // if logout is successful, redirect to home
             if (userInfo.data === "User logged out.") {
                 this.Router.navigateByUrl('/');
@@ -835,6 +1014,8 @@ class MyHeaderComponent {
             this.ObservablesService.setObservableData('user', null);
             this.ObservablesService.setObservableData('shopping-list', null);
             this.ObservablesService.setObservableData('inventory', null);
+            this.ObservablesService.setObservableData('recipes', null);
+            this.ObservablesService.setObservableData('meal-plan', null);
         });
         this.setToggleBurgerNavEventListener = () => {
             const burger = document.querySelector('.navbar-burger');
@@ -873,6 +1054,68 @@ MyHeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     })
     /* EXPORT */
 ], MyHeaderComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/shared/user-interface/recipe/recipe.component.scss":
+/*!********************************************************************!*\
+  !*** ./src/app/shared/user-interface/recipe/recipe.component.scss ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NoYXJlZC91c2VyLWludGVyZmFjZS9yZWNpcGUvcmVjaXBlLmNvbXBvbmVudC5zY3NzIn0= */");
+
+/***/ }),
+
+/***/ "./src/app/shared/user-interface/recipe/recipe.component.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/shared/user-interface/recipe/recipe.component.ts ***!
+  \******************************************************************/
+/*! exports provided: RecipeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RecipeComponent", function() { return RecipeComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+
+
+
+let RecipeComponent = class RecipeComponent {
+    // DEPENDENCIES INJECTION
+    constructor() {
+        this.addRecipeToMealPlan = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.addToMealPlanButton = true;
+        this.faTimes = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faTimes"];
+        this.faPlus = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faPlus"];
+        this.disableButton = () => {
+            const btn = document.querySelector('#addToMealPlanButton');
+            btn.setAttribute("disabled", "true");
+        };
+    }
+    ngOnInit() {
+    }
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], RecipeComponent.prototype, "recipe", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+], RecipeComponent.prototype, "addRecipeToMealPlan", void 0);
+RecipeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-recipe',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./recipe.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/shared/user-interface/recipe/recipe.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./recipe.component.scss */ "./src/app/shared/user-interface/recipe/recipe.component.scss")).default]
+    })
+], RecipeComponent);
 
 
 
@@ -1013,10 +1256,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _my_header_my_header_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./my-header/my-header.component */ "./src/app/shared/user-interface/my-header/my-header.component.ts");
 /* harmony import */ var _single_item_single_item_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./single-item/single-item.component */ "./src/app/shared/user-interface/single-item/single-item.component.ts");
 /* harmony import */ var _single_inventory_item_single_inventory_item_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./single-inventory-item/single-inventory-item.component */ "./src/app/shared/user-interface/single-inventory-item/single-inventory-item.component.ts");
+/* harmony import */ var _footer_footer_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./footer/footer.component */ "./src/app/shared/user-interface/footer/footer.component.ts");
+/* harmony import */ var _recipe_recipe_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./recipe/recipe.component */ "./src/app/shared/user-interface/recipe/recipe.component.ts");
+/* harmony import */ var _meal_plan_recipe_meal_plan_recipe_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./meal-plan-recipe/meal-plan-recipe.component */ "./src/app/shared/user-interface/meal-plan-recipe/meal-plan-recipe.component.ts");
 
 /* IMPORTS */
 
  // To use global Angular common directives
+
+
+
 
 
 
@@ -1030,10 +1279,10 @@ class UserInterfaceModule {
 UserInterfaceModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         // Import the components
-        declarations: [_my_header_my_header_component__WEBPACK_IMPORTED_MODULE_5__["MyHeaderComponent"], _single_item_single_item_component__WEBPACK_IMPORTED_MODULE_6__["SingleItemComponent"], _single_inventory_item_single_inventory_item_component__WEBPACK_IMPORTED_MODULE_7__["SingleInventoryItemComponent"]],
+        declarations: [_my_header_my_header_component__WEBPACK_IMPORTED_MODULE_5__["MyHeaderComponent"], _single_item_single_item_component__WEBPACK_IMPORTED_MODULE_6__["SingleItemComponent"], _single_inventory_item_single_inventory_item_component__WEBPACK_IMPORTED_MODULE_7__["SingleInventoryItemComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_8__["FooterComponent"], _recipe_recipe_component__WEBPACK_IMPORTED_MODULE_9__["RecipeComponent"], _meal_plan_recipe_meal_plan_recipe_component__WEBPACK_IMPORTED_MODULE_10__["MealPlanRecipeComponent"]],
         imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"], _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_4__["FontAwesomeModule"]],
         // Export the components to enable access from main component
-        exports: [_my_header_my_header_component__WEBPACK_IMPORTED_MODULE_5__["MyHeaderComponent"], _single_item_single_item_component__WEBPACK_IMPORTED_MODULE_6__["SingleItemComponent"], _single_inventory_item_single_inventory_item_component__WEBPACK_IMPORTED_MODULE_7__["SingleInventoryItemComponent"]]
+        exports: [_my_header_my_header_component__WEBPACK_IMPORTED_MODULE_5__["MyHeaderComponent"], _single_item_single_item_component__WEBPACK_IMPORTED_MODULE_6__["SingleItemComponent"], _single_inventory_item_single_inventory_item_component__WEBPACK_IMPORTED_MODULE_7__["SingleInventoryItemComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_8__["FooterComponent"], _recipe_recipe_component__WEBPACK_IMPORTED_MODULE_9__["RecipeComponent"], _meal_plan_recipe_meal_plan_recipe_component__WEBPACK_IMPORTED_MODULE_10__["MealPlanRecipeComponent"]]
     })
     /* EXPORT */
 ], UserInterfaceModule);

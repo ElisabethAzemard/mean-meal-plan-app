@@ -154,7 +154,9 @@ class ApiRouterClass {
                 })
             }
             updateItem(req)
+
                 .then(apiResponse => {
+                    console.log(apiResponse)
                     return res.status(201).json({
                         message: 'Data updated',
                         data: apiResponse,

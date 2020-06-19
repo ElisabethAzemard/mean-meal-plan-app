@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h2 class=\"title\">Add Item to shopping list</h2>\n<form\n    [formGroup]=\"formData\"\n    (submit)=\"addItem.emit(formData.value); resetForm();\"\n    class=\"form\">\n    <div class=\"field has-addons\">\n        <div class=\"control is-expanded\">\n            <input formControlName=\"name\"\n                type=\"email\"\n                name=\"email\"\n                required\n                minlength=\"5\"\n                placeholder=\"Add an item...\"\n                class=\"input is-primary is-small\">\n        </div>\n        <div class=\"control\">\n            <button type=\"submit\" class=\"button is-primary is-small\">\n                <span class=\"icon is-small\">\n                    <fa-icon [icon]=\"faCheck\"\n                        aria-role=\"button\"></fa-icon>\n                </span>\n            </button>\n        </div>\n    </div>\n</form>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<form\n    [formGroup]=\"formData\"\n    (submit)=\"addItem.emit(formData.value); resetForm();\"\n    class=\"form\">\n    <div class=\"field has-addons\">\n        <div class=\"control is-expanded\">\n            <input formControlName=\"name\"\n                type=\"email\"\n                name=\"email\"\n                required\n                minlength=\"5\"\n                placeholder=\"Ajouter un élément...\"\n                class=\"input is-primary is-small\">\n        </div>\n        <div class=\"control\">\n            <button type=\"submit\" class=\"button is-primary is-small\">\n                <span class=\"icon is-small\">\n                    <fa-icon [icon]=\"faCheck\"\n                        aria-role=\"button\"></fa-icon>\n                </span>\n            </button>\n        </div>\n    </div>\n</form>\n");
 
 /***/ }),
 
@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h2 class=\"title\">Connexion</h2>\n<form [formGroup]=\"formData\"\n    (submit)=\"formSubmit.emit(formData.value)\"\n    class=\"form\">\n    <div class=\"field\">\n        <input formControlName=\"email\"\n            type=\"email\"\n            name=\"email\"\n            required\n            minlength=\"5\"\n            placeholder=\"Your email...\"\n            class=\"input is-primary is-small\">\n    </div>\n    <div class=\"field\">\n        <input formControlName=\"password\"\n            type=\"password\"\n            name=\"password\"\n            required\n            minlength=\"5\"\n            placeholder=\"Your password...\"\n            class=\"input is-primary is-small\">\n    </div>\n    <div class=\"field level\">\n        <div class=\"level-left\">\n            <div class=\"level-item\">\n                <button [disabled]=\"!formData.valid\"\n                    type=\"submit\"\n                    class=\"button is-primary is-small\">OK</button>\n            </div>\n            <div class=\"level-item\">\n                <a href=\"#\"\n                    role=\"button\"\n                    (click)=\"notRegistered.emit()\">Not registered yet?</a>\n            </div>\n        </div>\n    </div>\n</form>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<h2 class=\"title is-4 has-text-centered\">Connexion</h2>\n<form [formGroup]=\"formData\"\n    (submit)=\"formSubmit.emit(formData.value)\"\n    class=\"form\">\n    <div class=\"field\">\n        <input formControlName=\"email\"\n            type=\"email\"\n            name=\"email\"\n            required\n            minlength=\"5\"\n            placeholder=\"Mon email...\"\n            class=\"input is-primary is-small\">\n    </div>\n    <div class=\"field\">\n        <input formControlName=\"password\"\n            type=\"password\"\n            name=\"password\"\n            required\n            minlength=\"5\"\n            placeholder=\"Mon mot de passe...\"\n            class=\"input is-primary is-small\">\n    </div>\n    <div class=\"field level\">\n        <div class=\"level-left\">\n            <div class=\"level-item\">\n                <button [disabled]=\"!formData.valid\"\n                    type=\"submit\"\n                    class=\"button is-primary is-small\">Je me connecte</button>\n            </div>\n            <div class=\"level-item\">\n                <a href=\"#\"\n                    role=\"button\"\n                    (click)=\"notRegistered.emit()\">Pas encore inscrit ?</a>\n            </div>\n        </div>\n    </div>\n</form>\n");
 
 /***/ }),
 
@@ -35,7 +35,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h2 class=\"title\">Inscription</h2>\n<!-- Use the NgModel for two-way data binding -->\n<form\n    [formGroup]=\"formData\"\n    (submit)=\"formSubmit.emit(formData.value)\">\n    <div class=\"field\">\n        <label for=\"firstName\">Votre prénom <span *ngIf=\"firstName\">Obligatoire</span></label>\n        <input\n            formControlName=\"firstname\"\n            type=\"text\"\n            name=\"firstname\"\n            class=\"input is-primary is-small\">\n    </div>\n\n    <div class=\"field\">\n        <label for=\"lastName\">Votre nom <span *ngIf=\"lastName\">Obligatoire</span></label>\n        <input\n            formControlName=\"lastname\"\n            type=\"text\"\n            name=\"lastname\"\n            class=\"input is-primary is-small\">\n    </div>\n\n    <div class=\"field\">\n        <label for=\"email\">Votre adresse mail <span *ngIf=\"email\">Obligatoire</span></label>\n        <input\n            formControlName=\"email\"\n            type=\"email\"\n            name=\"email\"\n            class=\"input is-primary is-small\">\n    </div>\n\n    <div class=\"field\">\n        <label for=\"password\">Votre mot de passe <span *ngIf=\"password\">Obligatoire</span></label>\n        <input\n            formControlName=\"password\"\n            type=\"password\"\n            name=\"password\"\n            class=\"input is-primary is-small\">\n    </div>\n\n    <div class=\"field\">\n        <label for=\"repeate-password\">Répéter votre mot de passe<span\n                *ngIf=\"repeatpassword\">Différent</span></label>\n        <input\n            formControlName=\"repeatpassword\"\n            type=\"password\"\n            name=\"repeatpassword\"\n            class=\"input is-primary is-small\">\n    </div>\n\n    <div class=\"field\">\n        <div class=\"level-left\">\n            <div class=\"level-item\">\n                <button [disabled]=\"!formData.valid\"\n                    type=\"submit\"\n                    class=\"button is-primary is-small\">Inscription</button>\n            </div>\n        </div>\n    </div>\n</form>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<h2 class=\"title is-4 has-text-centered\">Inscription</h2>\n<!-- Use the NgModel for two-way data binding -->\n<form\n    [formGroup]=\"formData\"\n    (submit)=\"formSubmit.emit(formData.value)\">\n    <div class=\"field\">\n        <input\n            formControlName=\"firstname\"\n            type=\"text\"\n            name=\"firstname\"\n            class=\"input is-primary is-small\"\n            placeholder=\"Mon prénom...\">\n    </div>\n\n    <div class=\"field\">\n        <input\n            formControlName=\"lastname\"\n            type=\"text\"\n            name=\"lastname\"\n            class=\"input is-primary is-small\"\n            placeholder=\"Mon nom...\">\n    </div>\n\n    <div class=\"field\">\n        <input\n            formControlName=\"email\"\n            type=\"email\"\n            name=\"email\"\n            class=\"input is-primary is-small\"\n            placeholder=\"Mon adresse mail...\">\n    </div>\n\n    <div class=\"field\">\n        <input\n            formControlName=\"password\"\n            type=\"password\"\n            name=\"password\"\n            class=\"input is-primary is-small\"\n            placeholder=\"Mon mot de passe...\">\n    </div>\n\n    <div class=\"field\">\n        <input\n            formControlName=\"repeatpassword\"\n            type=\"password\"\n            name=\"repeatpassword\"\n            class=\"input is-primary is-small\"\n            placeholder=\"Répéter mon mot de passe...\">\n    </div>\n\n    <div class=\"field\">\n        <div class=\"level-left\">\n            <div class=\"level-item\">\n                <button [disabled]=\"!formData.valid\"\n                    type=\"submit\"\n                    class=\"button is-primary is-small\">Je m'inscris</button>\n            </div>\n            <div class=\"level-item\">\n                <a href=\"#\"\n                    role=\"button\"\n                    (click)=\"alreadyRegistered.emit()\">Déjà inscrit ?</a>\n            </div>\n        </div>\n    </div>\n</form>\n");
 
 /***/ }),
 
@@ -257,93 +257,13 @@ __webpack_require__.r(__webpack_exports__);
 /* IMPORTS */
 
 
-/* DEFINITION */
-let RegistrationFormComponent = 
-/* EXPORT */
-// export class RegistrationFormComponent implements OnInit {
-//   @Input() formObject: UserModel;
-//   // The @Output() decorator enable component to send data to main component with an event
-//   @Output() sendFormData = new EventEmitter();
-//   // Create a varible to toggle the form
-//   // public formIsOpen: Boolean = false;
-//   // Create an object for errors
-//   public formError;
-//   public formData: FormGroup;
-//   @Output() formSubmit = new EventEmitter();
-//   constructor(private FormBuilder: FormBuilder) { }
-//   // Create a function to reset form error
-//   private resetFormError = () => {
-//     this.formError = {
-//       score: 0,
-//       firstName: false,
-//       lastName: false,
-//       email: false,
-//       password: false,
-//       repeatpassword: false,
-//       cgu: false
-//     };
-//     this.formData = this.FormBuilder.group({
-//       firstName: [null, Validators.required],
-//       lastName: [null, Validators.required],
-//       email: [null, Validators.required],
-//       password: [null, Validators.required],
-//       repeatpassword: [null, Validators.required],
-//     });
-//   }
-//   // Create a function to manipulate checkbox
-//   // public checkConditions = () => {
-//   //   // Invert value
-//   //   this.formObject.cgu = !this.formObject.cgu;
-//   //   // Hide error
-//   //   this.formError.cgu = false;
-//   // }
-//   // Creta a function for the form submission
-//   // public formSubmission = () => {
-//   //   // Reset errors
-//   //   this.resetFormError()
-//   //   // Test mandatory fields: firstName
-//   //   if (this.formObject.firstName.length <= 1) {
-//   //     this.formError.score++;
-//   //     this.formError.firstName = true;
-//   //   }
-//   //   // Test mandatory fields: lastName
-//   //   if (this.formObject.lastName.length <= 1) {
-//   //     this.formError.score++;
-//   //     this.formError.lastName = true;
-//   //   }
-//   //   // Test mandatory fields: email
-//   //   if (this.formObject.email.length <= 1) {
-//   //     this.formError.score++;
-//   //     this.formError.email = true;
-//   //   }
-//   //   // Test mandatory fields: password
-//   //   if (this.formObject.password.length <= 4) {
-//   //     this.formError.score++;
-//   //     this.formError.password = true;
-//   //   }
-//   //   // Test mandatory fields: repeatpassword
-//   //   if (this.formObject.password != this.formObject.repeatpassword) {
-//   //     this.formError.score++;
-//   //     this.formError.repeatpassword = true;
-//   //   }
-//   //   // Test mandatory fields: CGU
-//   //   if (!this.formObject.cgu) {
-//   //     this.formError.score++;
-//   //     this.formError.cgu = true;
-//   //   }
-//   //   /* FINAL VALIDATION */
-//   //   this.formError.score === 0 ? this.sendFormData.emit(this.formObject) : null;
-//   // }
-//   ngOnInit() {
-//     // Reset errors when component is loaded
-//     this.resetFormError()
-//   }
-// }
-class RegistrationFormComponent {
+/* DEFINITION & EXPORT */
+let RegistrationFormComponent = class RegistrationFormComponent {
     // Inject FormBuilder
     constructor(FormBuilder) {
         this.FormBuilder = FormBuilder;
         this.formSubmit = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.alreadyRegistered = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         // Method to reset form
         this.resetForm = () => {
             this.formData = this.FormBuilder.group({
@@ -366,92 +286,15 @@ RegistrationFormComponent.ctorParameters = () => [
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
 ], RegistrationFormComponent.prototype, "formSubmit", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+], RegistrationFormComponent.prototype, "alreadyRegistered", void 0);
 RegistrationFormComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-registration-form',
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./registration-form.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/shared/form-module/registration-form/registration-form.component.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./registration-form.component.scss */ "./src/app/shared/form-module/registration-form/registration-form.component.scss")).default]
     })
-    /* EXPORT */
-    // export class RegistrationFormComponent implements OnInit {
-    //   @Input() formObject: UserModel;
-    //   // The @Output() decorator enable component to send data to main component with an event
-    //   @Output() sendFormData = new EventEmitter();
-    //   // Create a varible to toggle the form
-    //   // public formIsOpen: Boolean = false;
-    //   // Create an object for errors
-    //   public formError;
-    //   public formData: FormGroup;
-    //   @Output() formSubmit = new EventEmitter();
-    //   constructor(private FormBuilder: FormBuilder) { }
-    //   // Create a function to reset form error
-    //   private resetFormError = () => {
-    //     this.formError = {
-    //       score: 0,
-    //       firstName: false,
-    //       lastName: false,
-    //       email: false,
-    //       password: false,
-    //       repeatpassword: false,
-    //       cgu: false
-    //     };
-    //     this.formData = this.FormBuilder.group({
-    //       firstName: [null, Validators.required],
-    //       lastName: [null, Validators.required],
-    //       email: [null, Validators.required],
-    //       password: [null, Validators.required],
-    //       repeatpassword: [null, Validators.required],
-    //     });
-    //   }
-    //   // Create a function to manipulate checkbox
-    //   // public checkConditions = () => {
-    //   //   // Invert value
-    //   //   this.formObject.cgu = !this.formObject.cgu;
-    //   //   // Hide error
-    //   //   this.formError.cgu = false;
-    //   // }
-    //   // Creta a function for the form submission
-    //   // public formSubmission = () => {
-    //   //   // Reset errors
-    //   //   this.resetFormError()
-    //   //   // Test mandatory fields: firstName
-    //   //   if (this.formObject.firstName.length <= 1) {
-    //   //     this.formError.score++;
-    //   //     this.formError.firstName = true;
-    //   //   }
-    //   //   // Test mandatory fields: lastName
-    //   //   if (this.formObject.lastName.length <= 1) {
-    //   //     this.formError.score++;
-    //   //     this.formError.lastName = true;
-    //   //   }
-    //   //   // Test mandatory fields: email
-    //   //   if (this.formObject.email.length <= 1) {
-    //   //     this.formError.score++;
-    //   //     this.formError.email = true;
-    //   //   }
-    //   //   // Test mandatory fields: password
-    //   //   if (this.formObject.password.length <= 4) {
-    //   //     this.formError.score++;
-    //   //     this.formError.password = true;
-    //   //   }
-    //   //   // Test mandatory fields: repeatpassword
-    //   //   if (this.formObject.password != this.formObject.repeatpassword) {
-    //   //     this.formError.score++;
-    //   //     this.formError.repeatpassword = true;
-    //   //   }
-    //   //   // Test mandatory fields: CGU
-    //   //   if (!this.formObject.cgu) {
-    //   //     this.formError.score++;
-    //   //     this.formError.cgu = true;
-    //   //   }
-    //   //   /* FINAL VALIDATION */
-    //   //   this.formError.score === 0 ? this.sendFormData.emit(this.formObject) : null;
-    //   // }
-    //   ngOnInit() {
-    //     // Reset errors when component is loaded
-    //     this.resetFormError()
-    //   }
-    // }
 ], RegistrationFormComponent);
 
 

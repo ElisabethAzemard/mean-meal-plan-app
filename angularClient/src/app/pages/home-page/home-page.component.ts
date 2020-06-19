@@ -62,7 +62,6 @@ export class HomePageComponent implements OnInit {
     public registerUser = async (user: UserModel) => {
         // send registration form to auth API
         const userInfo = await this.AuthService.registerUser(user);
-        console.log(userInfo);
         //if user registration is successful, redirect to /news
         if (userInfo) {
             this.Router.navigateByUrl('/shopping-list');

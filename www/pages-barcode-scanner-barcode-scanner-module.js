@@ -46600,7 +46600,7 @@ BarecodeScannerLivestreamOverlayModule.decorators = [
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>barcode-scanner works !</p>\n\n<div>\n    Code barre : {{ barcodeValue }}\n</div>\n\n<form>\n</form>\n<zxing-scanner\n    [formats]=\"allowedFormats\"\n    (scanSuccess)=\"scanSuccessHandler($event)\"></zxing-scanner>\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<section class=\"section\">\n    <h2 class=\"title is-4 has-text-centered\">Scanner un code barre</h2>\n</section>\n<zxing-scanner\n[formats]=\"allowedFormats\"\n(scanSuccess)=\"scanSuccessHandler($event)\"></zxing-scanner>\n\n<section class=\"section\">\n    <p>Code barre détecté : {{ barcodeValue }}</p>\n</section>\n\n");
 
 /***/ }),
 
@@ -46758,9 +46758,13 @@ let BarcodeScannerComponent = class BarcodeScannerComponent {
         this.allowedFormats = [_zxing_library__WEBPACK_IMPORTED_MODULE_2__["BarcodeFormat"].EAN_13, _zxing_library__WEBPACK_IMPORTED_MODULE_2__["BarcodeFormat"].CODE_128];
     }
     ngAfterViewInit() {
+        this.scannerEnabled = false;
     }
     scanSuccessHandler(barcode) {
         this.barcodeValue = barcode;
+        this.scannerEnabled = false;
+    }
+    ngOnDestroy() {
         this.scannerEnabled = false;
     }
 };
